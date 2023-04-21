@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Client\src\api\config.ts" />
+    <None Remove="Client\src\api\response-package.model.ts" />
+    <None Remove="Client\src\api\rxjs-extensions.ts" />
+    <None Remove="Client\src\app\core\language\language.service.ts" />
+    <None Remove="Client\src\app\core\models\admin\access-rights\can-activate.model.ts" />
+    <None Remove="Client\src\app\core\models\admin\access-rights\profile-url-access-right.model.ts" />
+    <None Remove="Client\src\app\core\models\admin\access-rights\url-access-right.model.ts" />
+    <None Remove="Client\src\app\core\models\admin\login\logged-in-user.model.ts" />
+    <None Remove="Client\src\app\core\models\language.ts" />
+    <None Remove="Client\src\app\core\security\security.service.ts" />
+    <None Remove="Client\src\app\login\login-response.model.ts" />
+    <None Remove="Client\src\app\shared\pipes\translate.pipe.ts" />
+    <None Remove="Client\src\app\shared\shared.module.ts" />
+    <None Remove="Client\src\app\shared\shared.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="Client\src\api\config.ts" />
+    <TypeScriptCompile Include="Client\src\api\response-package.model.ts" />
+    <TypeScriptCompile Include="Client\src\api\rxjs-extensions.ts" />
+    <TypeScriptCompile Include="Client\src\app\core\language\language.service.ts" />
+    <TypeScriptCompile Include="Client\src\app\core\models\admin\access-rights\can-activate.model.ts" />
+    <TypeScriptCompile Include="Client\src\app\core\models\admin\access-rights\profile-url-access-right.model.ts" />
+    <TypeScriptCompile Include="Client\src\app\core\models\admin\access-rights\url-access-right.model.ts" />
+    <TypeScriptCompile Include="Client\src\app\core\models\admin\login\logged-in-user.model.ts" />
+    <TypeScriptCompile Include="Client\src\app\core\models\language.ts" />
+    <TypeScriptCompile Include="Client\src\app\core\security\security.service.ts" />
+    <TypeScriptCompile Include="Client\src\app\login\login-response.model.ts" />
+    <TypeScriptCompile Include="Client\src\app\shared\pipes\translate.pipe.ts" />
+    <TypeScriptCompile Include="Client\src\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="Client\src\app\shared\shared.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Client\src\app\core\language\translations\" />
+  </ItemGroup>
+
+</Project>
