@@ -1,28 +1,45 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-*.vsidx
-*.suo
-*.wsuo
-/Application/obj/Debug/net7.0/Application.assets.cache
-/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache
-/Application/obj/Debug/net7.0/Application.GeneratedMSBuildEditorConfig.editorconfig
-/Application/obj/Application.csproj.nuget.dgspec.json
-/Application/obj/Application.csproj.nuget.g.props
-/Application/obj/project.assets.json
-/Application/obj/project.nuget.cache
-/.vs/fishermanZone/FileContentIndex/e0cbb7b3-4138-44e9-9538-55642e517d44.vsidx
-/Client/obj/Debug/net7.0/Client.GeneratedMSBuildEditorConfig.editorconfig
-/Client/obj/Debug/net7.0/Client.assets.cache
-*.cache
-*.json
-*.props
-*.editorconfig
-/Persistence/obj/Debug/net7.0/Persistence.assets.cache
-/Persistence/obj/Debug/net7.0/Persistence.GeneratedMSBuildEditorConfig.editorconfig
-/Persistence/obj/Debug/net7.0/Persistence.csproj.AssemblyReference.cache
-/Persistence/obj/Persistence.csproj.nuget.dgspec.json
-/Persistence/obj/Persistence.csproj.nuget.g.props
-/Persistence/obj/project.assets.json
-/Persistence/obj/project.nuget.cache
+#Visual studio
+.vs/
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db

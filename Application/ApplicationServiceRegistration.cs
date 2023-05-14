@@ -1,4 +1,8 @@
-﻿using Application.Common.Behaviours;
+﻿using Application.BusinessLogic.Shared;
+using Application.BusinessLogic.Shared.Create;
+using Application.BusinessLogic.Shared.Delete;
+using Application.BusinessLogic.Shared.Update;
+using Application.Common.Behaviours;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +20,9 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddScoped(typeof(CreateCommandHandler<,>),typeof(CreateCommandHandler<,>));
+            services.AddScoped(typeof(DeleteCommandHandler<,>),typeof(DeleteCommandHandler<,>));
+            services.AddScoped(typeof(UpdateCommandHandler<,>),typeof(UpdateCommandHandler<,>));
             return services;
         }
     }
