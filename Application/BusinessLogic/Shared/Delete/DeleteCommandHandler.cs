@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Application.BusinessLogic.Shared.Delete
 {
     public class DeleteCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand>
-        where TCommand : IDeleteCommand
+        where TCommand : DeleteCommand
         where TEntity : class
     {
         private readonly IApplicationDbContext _context;
