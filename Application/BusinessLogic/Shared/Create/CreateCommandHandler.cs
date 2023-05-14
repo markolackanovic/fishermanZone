@@ -11,7 +11,7 @@ using System.Windows.Input;
 namespace Application.BusinessLogic.Shared.Create
 {
     public class CreateCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand>
-        where TCommand : ICreateCommand
+        where TCommand : CreateCommand
         where TEntity : class, new()
     {
         private readonly IApplicationDbContext _context;

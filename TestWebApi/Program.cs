@@ -45,7 +45,7 @@ else
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TemplateKingICT");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BIHFishing");
     c.DocExpansion(DocExpansion.None);
     c.EnableFilter();
 });
