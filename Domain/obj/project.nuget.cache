@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pCxwoZHE42SOwuLvITzhasaP0+1uBu7Pk6DUPx/wbg2jLheZ5qsghpQU7ATVlpRkJXyf8p+pEZKq9XdNgpQUEA==",
+  "dgSpecHash": "73XUaqbVH5JQjsYIiQri3QaD1Ayn0R6mR5KDRZBPVc3GupUxCmpbMxpSZFNxu7K/51FjwDdHD5B2e74YV5kjdA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ruzic\\source\\repos\\fishermanZone\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Marko privatno\\fishermanZone\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
