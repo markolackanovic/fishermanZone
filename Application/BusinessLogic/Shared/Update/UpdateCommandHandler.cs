@@ -1,11 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.BusinessLogic.Shared.Update
 {
@@ -25,6 +20,7 @@ namespace Application.BusinessLogic.Shared.Update
         {
             var entity = _mapper.Map<TCommand, TEntity>(request);
             _context.Set<TEntity>().Update(entity);
+
             try
             {
                 await _context.SaveChangesAsync(cancellationToken);
