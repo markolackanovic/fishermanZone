@@ -1,0 +1,22 @@
+﻿li:hover {
+    cursor: pointer;
+}
+
+.pagination > .active > a {
+    background-color: transparent;
+    z-index: 0;
+}
+
+.pagination > li > a {
+    padding: 6px 12px;
+}
+
+.pagination {
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+
+}
+.active {
+    color: rgb(235, 120, 0);
+}

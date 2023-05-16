@@ -1,0 +1,32 @@
+<div class="">
+    <ul class="pagination">
+        <li (click)="selectPage(1,$event)" [class.disabled]="currentPage == 1">
+            <a title="{{firstPageText}}">&laquo;</a>
+        </li>
+        <li (click)="selectPage(currentPage - 1,$event)" [class.disabled]="currentPage == 1">
+            <a title="{{previousPageText}}">&lsaquo;</a>
+        </li>
+        <li class="disabled" (click)="cancelEvent($event)" *ngIf="(currentPage - range) > 1">
+            <a>...</a>
+        </li>
+        <li *ngFor="let page of pages" [class.active]="page == currentPage">
+            <a (click)="selectPage(page, $event)">
+                {{page}}
+            </a>
+        </li>
+        <li class="disabled" (click)="cancelEvent($event)" *ngIf="(currentPage + range) < totalPages">
+            <a>...</a>
+        </li>
+        <li (click)="selectPage(currentPage + 1,$event)" [class.disabled]="currentPage == totalPages">
+            <a title="{{nextPageText}}">&rsaquo;</a>
+        </li>
+        <li (click)="selectPage(totalPages,$event)" [class.disabled]="currentPage == totalPages">
+            <a title="{{lastPageText}}">&raquo;</a>
+        </li>
+
+        <select [(ngModel)]="limit"  name="limit" id="limit" (ngModelChange)="limitChange($event)" style="width: 65px;margin-left: 2px;padding-left: 5px;display: inline-block; height: 34px;" class="form-control card">
+            <option  *ngFor="let limit of limitList" [value]="limit">{{limit}}</option>
+        </select>
+    </ul>
+
+</div>
