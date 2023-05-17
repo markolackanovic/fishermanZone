@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Application.BusinessLogic.Shared.Create
 {
-    public class CreateCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand>
+    public class CreateCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand,int>
         where TCommand : CreateCommand
         where TEntity : class, new()
     {
@@ -23,14 +23,18 @@ namespace Application.BusinessLogic.Shared.Create
             _mapper = mapper;
         }
 
-        public  async Task<Unit> Handle(TCommand request, CancellationToken cancellationToken)
+        public  async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<TCommand, TEntity>(request);
+            var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
+                .Select(x => x.Name)
+                .Single();
             _context.Set<TEntity>().Add(entity);
             try
             {
                 await _context.SaveChangesAsync(cancellationToken);
-                return Unit.Value;
+                return (int)entity.GetType().GetProperty(keyName).GetValue(entity);
+             
 
             }
             catch (Exception ex)

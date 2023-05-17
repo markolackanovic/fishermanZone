@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.BusinessLogic.Shared.Delete
 {
-    public class DeleteCommand : IRequest<Unit>
+    public class DeleteCommand : IRequest<int>
     {
         public int Id { get; set; }
     }

@@ -2,7 +2,7 @@
 
 namespace Application.BusinessLogic.Shared.Create
 {
-    public class CreateCommand : IRequest<Unit>
+    public class CreateCommand : IRequest<int>
     {
 
     }

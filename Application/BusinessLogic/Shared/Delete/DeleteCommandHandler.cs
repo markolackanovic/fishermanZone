@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.BusinessLogic.Shared.Delete
 {
-    public class DeleteCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand>
+    public class DeleteCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand,int>
         where TCommand : DeleteCommand
         where TEntity : class
     {
@@ -23,9 +23,12 @@ namespace Application.BusinessLogic.Shared.Delete
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(TCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
         {
             var entity = _context.Set<TEntity>().Find(request.Id);
+            var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
+                .Select(x => x.Name)
+                .Single();
             try
             {
                 entity.GetType().GetProperty("Aktivno").SetValue(entity, false);
@@ -41,7 +44,7 @@ namespace Application.BusinessLogic.Shared.Delete
             try
             {
                 await _context.SaveChangesAsync(cancellationToken);
-                return Unit.Value;
+                return (int)entity.GetType().GetProperty(keyName).GetValue(entity);
             }
             catch(Exception ex)
             {
