@@ -11,5 +11,5 @@ public partial class TipAdministrativneJedinice
 
     public bool Aktivno { get; set; }
 
-    public virtual ICollection<AdministrativnaJedinica> AdministrativnaJedinicas { get; } = new List<AdministrativnaJedinica>();
+    public virtual ICollection<AdministrativnaJedinica> AdministrativnaJedinicas { get; set; } = new List<AdministrativnaJedinica>();
 }

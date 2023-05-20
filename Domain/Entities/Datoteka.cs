@@ -11,9 +11,9 @@ public partial class Datoteka
 
     public int TipDatotekeId { get; set; }
 
-    public virtual ICollection<DatotekaObjave> DatotekaObjaves { get; } = new List<DatotekaObjave>();
+    public virtual ICollection<DatotekaObjave> DatotekaObjaves { get; set; } = new List<DatotekaObjave>();
 
-    public virtual ICollection<Dokument> Dokuments { get; } = new List<Dokument>();
+    public virtual ICollection<Dokument> Dokuments { get; set; } = new List<Dokument>();
 
     public virtual TipDatoteke TipDatoteke { get; set; } = null!;
 }

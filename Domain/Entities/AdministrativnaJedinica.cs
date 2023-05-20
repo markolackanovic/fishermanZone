@@ -13,5 +13,5 @@ public partial class AdministrativnaJedinica
 
     public virtual TipAdministrativneJedinice? TipAdministrativneJedinice { get; set; }
 
-    public virtual ICollection<Udruzenje> Udruzenjes { get; } = new List<Udruzenje>();
+    public virtual ICollection<Udruzenje> Udruzenjes { get; set; } = new List<Udruzenje>();
 }

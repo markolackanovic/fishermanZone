@@ -4,6 +4,7 @@ using Application.Common.Interfaces;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace Persistence
 {
@@ -48,7 +49,7 @@ namespace Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-            => optionsBuilder.UseSqlServer("Server=DESKTOP-5S5PRQO;Database=BIHFishing;Trusted_Connection=True;Encrypt=False;");
+            => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;User ID=postgres;Password=Pa$$w0rd;Database=BIHFishing;Trust Server Certificate=false;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -177,8 +178,8 @@ namespace Persistence
             {
                 entity.ToTable("ObjavaKorisnika");
 
-                entity.Property(e => e.ObjavaKorisnikaId).HasColumnName("ObjavaKorisnikaID");
                 entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
+                entity.Property(e => e.ObjavaKorisnikaId).HasColumnName("ObjavaKorisnikaID");
                 entity.Property(e => e.ObjavaId).HasColumnName("ObjavaID");
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
 
@@ -281,5 +282,5 @@ namespace Persistence
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-    }
+    } 
 }

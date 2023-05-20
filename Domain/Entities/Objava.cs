@@ -19,13 +19,13 @@ public partial class Objava
 
     public int TipObjaveId { get; set; }
 
-    public virtual ICollection<DatotekaObjave> DatotekaObjaves { get; } = new List<DatotekaObjave>();
+    public virtual ICollection<DatotekaObjave> DatotekaObjaves { get; set; } = new List<DatotekaObjave>();
 
-    public virtual ICollection<Komentar> Komentars { get; } = new List<Komentar>();
+    public virtual ICollection<Komentar> Komentars { get; set; } = new List<Komentar>();
 
-    public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; } = new List<ObjavaKorisnika>();
+    public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; set; } = new List<ObjavaKorisnika>();
 
-    public virtual ICollection<ObjaveUdruzenja> ObjaveUdruzenjas { get; } = new List<ObjaveUdruzenja>();
+    public virtual ICollection<ObjaveUdruzenja> ObjaveUdruzenjas { get; set; } = new List<ObjaveUdruzenja>();
 
     public virtual TipObjave TipObjave { get; set; } = null!;
 }

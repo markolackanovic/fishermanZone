@@ -9,5 +9,5 @@ public partial class TipDatoteke
 
     public string Naziv { get; set; } = null!;
 
-    public virtual ICollection<Datoteka> Datotekas { get; } = new List<Datoteka>();
+    public virtual ICollection<Datoteka> Datotekas { get; set; } = new List<Datoteka>();
 }

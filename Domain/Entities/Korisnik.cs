@@ -27,7 +27,7 @@ public partial class Korisnik
 
     public bool Aktivan { get; set; }
 
-    public virtual ICollection<Komentar> Komentars { get; } = new List<Komentar>();
+    public virtual ICollection<Komentar> Komentars { get; set; } = new List<Komentar>();
 
-    public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; } = new List<ObjavaKorisnika>();
+    public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; set; } = new List<ObjavaKorisnika>();
 }

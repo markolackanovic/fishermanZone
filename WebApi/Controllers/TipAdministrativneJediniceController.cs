@@ -3,6 +3,7 @@ using Application.BusinessLogic.AdministrativnaJedinica.Commands.DeleteAdministr
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.CreateTipAdministrativneJediniceCommand;
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.DeleteTipAdministrativneJediniceCommand;
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.UpdateTipAdministrativneJediniceCommand;
+using Application.BusinessLogic.TipAdministrativneJedinice.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -21,17 +22,25 @@ namespace WebApi.Controllers
         }
         [AllowAnonymous]
         [HttpDelete]
-        [SwaggerOperation(Tags = new[] { "AdministrativnaJedinica" })]
+        [SwaggerOperation(Tags = new[] { "TipAdministrativneJedinice" })]
         public async Task<ActionResult<int>> Delete(DeleteTipAdministrativneJediniceCommand request)
         {
             return Ok(await Mediator.Send(request));
         }
         [AllowAnonymous]
         [HttpPut]
-        [SwaggerOperation(Tags = new[] { "AdministrativnaJedinica" })]
+        [SwaggerOperation(Tags = new[] { "TipAdministrativneJedinice" })]
         public async Task<ActionResult<int>> Update(UpdateTipAdministrativneJediniceCommand request)
         {
             return Ok(await Mediator.Send(request));
+        }
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        [SwaggerOperation(Tags = new[] { "TipAdministrativneJedinice" })]
+
+        public async Task<ActionResult<TipAdministrativneJediniceViewModel>> GetTipAdministrativneJediniceById(int id)
+        {
+            return Ok(await Mediator.Send(new GetTipAdministrativneJediniceByIdQuery { Id = id }));
         }
 
     }

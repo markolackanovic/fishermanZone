@@ -2,7 +2,7 @@
 
 namespace Application.BusinessLogic.Shared.Update
 {
-    public class UpdateCommand : IRequest<Unit>
+    public class UpdateCommand : IRequest<int>
     {
     }
 }

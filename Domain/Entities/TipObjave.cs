@@ -9,5 +9,5 @@ public partial class TipObjave
 
     public string Naziv { get; set; } = null!;
 
-    public virtual ICollection<Objava> Objavas { get; } = new List<Objava>();
+    public virtual ICollection<Objava> Objavas { get; set; } = new List<Objava>();
 }

@@ -21,13 +21,13 @@ public partial class Udruzenje
 
     public virtual AdministrativnaJedinica AdministrativnaJedinica { get; set; } = null!;
 
-    public virtual ICollection<Dokument> Dokuments { get; } = new List<Dokument>();
+    public virtual ICollection<Dokument> Dokuments { get; set; } = new List<Dokument>();
 
-    public virtual ICollection<Udruzenje> InverseNadredjenjoUdruzenje { get; } = new List<Udruzenje>();
+    public virtual ICollection<Udruzenje> InverseNadredjenjoUdruzenje { get; set; } = new List<Udruzenje>();
 
     public virtual Udruzenje? NadredjenjoUdruzenje { get; set; }
 
-    public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; } = new List<ObjavaKorisnika>();
+    public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; set; } = new List<ObjavaKorisnika>();
 
-    public virtual ICollection<ObjaveUdruzenja> ObjaveUdruzenjas { get; } = new List<ObjaveUdruzenja>();
+    public virtual ICollection<ObjaveUdruzenja> ObjaveUdruzenjas { get; set; } = new List<ObjaveUdruzenja>();
 }
