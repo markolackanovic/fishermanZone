@@ -19,6 +19,8 @@ public partial class Udruzenje
 
     public string? LogoPath { get; set; }
 
+    public bool? Aktivno { get; set; }
+
     public virtual AdministrativnaJedinica AdministrativnaJedinica { get; set; } = null!;
 
     public virtual ICollection<Dokument> Dokuments { get; set; } = new List<Dokument>();

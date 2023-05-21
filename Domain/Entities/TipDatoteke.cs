@@ -9,5 +9,7 @@ public partial class TipDatoteke
 
     public string Naziv { get; set; } = null!;
 
+    public bool? Aktivno { get; set; }
+
     public virtual ICollection<Datoteka> Datotekas { get; set; } = new List<Datoteka>();
 }

@@ -9,5 +9,7 @@ public partial class TipObjave
 
     public string Naziv { get; set; } = null!;
 
+    public bool? Aktivno { get; set; }
+
     public virtual ICollection<Objava> Objavas { get; set; } = new List<Objava>();
 }

@@ -25,7 +25,7 @@ public partial class Korisnik
 
     public string? ProfilnaSlika { get; set; }
 
-    public bool Aktivan { get; set; }
+    public bool? Aktivno { get; set; }
 
     public virtual ICollection<Komentar> Komentars { get; set; } = new List<Komentar>();
 

@@ -9,5 +9,5 @@ public partial class TipClana
 
     public string Naziv { get; set; } = null!;
 
-    public bool Aktivno { get; set; }
+    public bool? Aktivno { get; set; }
 }

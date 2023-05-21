@@ -57,7 +57,12 @@ namespace Persistence
             {
                 entity.ToTable("AdministrativnaJedinica");
 
+                entity.HasIndex(e => e.TipAdministrativneJediniceId, "IX_AdministrativnaJedinica_TipAdministrativneJediniceID");
+
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Naziv).HasMaxLength(500);
                 entity.Property(e => e.TipAdministrativneJediniceId).HasColumnName("TipAdministrativneJediniceID");
 
@@ -70,7 +75,12 @@ namespace Persistence
             {
                 entity.ToTable("Datoteka");
 
+                entity.HasIndex(e => e.TipDatotekeId, "IX_Datoteka_TipDatotekeID");
+
                 entity.Property(e => e.DatotekaId).HasColumnName("DatotekaID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Naziv).HasMaxLength(100);
                 entity.Property(e => e.TipDatotekeId).HasColumnName("TipDatotekeID");
 
@@ -86,7 +96,14 @@ namespace Persistence
 
                 entity.ToTable("DatotekaObjave");
 
+                entity.HasIndex(e => e.DatotekaId, "IX_DatotekaObjave_DatotekaID");
+
+                entity.HasIndex(e => e.ObjavaId, "IX_DatotekaObjave_ObjavaID");
+
                 entity.Property(e => e.DatotekeObjaveId).HasColumnName("DatotekeObjaveID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.DatotekaId).HasColumnName("DatotekaID");
                 entity.Property(e => e.ObjavaId).HasColumnName("ObjavaID");
 
@@ -105,7 +122,14 @@ namespace Persistence
             {
                 entity.ToTable("Dokument");
 
+                entity.HasIndex(e => e.DatotekaId, "IX_Dokument_DatotekaID");
+
+                entity.HasIndex(e => e.UdruzenjeId, "IX_Dokument_UdruzenjeID");
+
                 entity.Property(e => e.DokumentId).HasColumnName("DokumentID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.DatotekaId).HasColumnName("DatotekaID");
                 entity.Property(e => e.Naziv).HasMaxLength(50);
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
@@ -125,7 +149,14 @@ namespace Persistence
             {
                 entity.ToTable("Komentar");
 
+                entity.HasIndex(e => e.KorisnikId, "IX_Komentar_KorisnikID");
+
+                entity.HasIndex(e => e.ObjavaId, "IX_Komentar_ObjavaID");
+
                 entity.Property(e => e.KomentarId).HasColumnName("KomentarID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
                 entity.Property(e => e.ObjavaId).HasColumnName("ObjavaID");
 
@@ -146,6 +177,9 @@ namespace Persistence
 
                 entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
                 entity.Property(e => e.Adresa).HasMaxLength(500);
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Ime).HasMaxLength(100);
                 entity.Property(e => e.Jmbg)
                     .HasMaxLength(13)
@@ -162,8 +196,12 @@ namespace Persistence
             {
                 entity.ToTable("Objava");
 
+                entity.HasIndex(e => e.TipObjaveId, "IX_Objava_TipObjaveID");
+
                 entity.Property(e => e.ObjavaId).HasColumnName("ObjavaID");
-                entity.Property(e => e.DatumObjave).HasColumnType("date");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.LokacijaLat).HasMaxLength(10);
                 entity.Property(e => e.LokacijaLong).HasMaxLength(10);
                 entity.Property(e => e.TipObjaveId).HasColumnName("TipObjaveID");
@@ -178,8 +216,17 @@ namespace Persistence
             {
                 entity.ToTable("ObjavaKorisnika");
 
-                entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
+                entity.HasIndex(e => e.KorisnikId, "IX_ObjavaKorisnika_KorisnikID");
+
+                entity.HasIndex(e => e.ObjavaId, "IX_ObjavaKorisnika_ObjavaID");
+
+                entity.HasIndex(e => e.UdruzenjeId, "IX_ObjavaKorisnika_UdruzenjeID");
+
                 entity.Property(e => e.ObjavaKorisnikaId).HasColumnName("ObjavaKorisnikaID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
+                entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
                 entity.Property(e => e.ObjavaId).HasColumnName("ObjavaID");
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
 
@@ -203,7 +250,14 @@ namespace Persistence
             {
                 entity.ToTable("ObjaveUdruzenja");
 
+                entity.HasIndex(e => e.ObjavaId, "IX_ObjaveUdruzenja_ObjavaID");
+
+                entity.HasIndex(e => e.UdruzenjeId, "IX_ObjaveUdruzenja_UdruzenjeID");
+
                 entity.Property(e => e.ObjaveUdruzenjaId).HasColumnName("ObjaveUdruzenjaID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.ObjavaId).HasColumnName("ObjavaID");
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
 
@@ -223,6 +277,9 @@ namespace Persistence
                 entity.ToTable("TipAdministrativneJedinice");
 
                 entity.Property(e => e.TipAdministrativneJediniceId).HasColumnName("TipAdministrativneJediniceID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Naziv).HasMaxLength(500);
             });
 
@@ -231,6 +288,9 @@ namespace Persistence
                 entity.ToTable("TipClana");
 
                 entity.Property(e => e.TipClanaId).HasColumnName("TipClanaID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Naziv).HasMaxLength(100);
             });
 
@@ -239,6 +299,9 @@ namespace Persistence
                 entity.ToTable("TipDatoteke");
 
                 entity.Property(e => e.TipDatotekeId).HasColumnName("TipDatotekeID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Naziv).HasMaxLength(100);
             });
 
@@ -247,6 +310,9 @@ namespace Persistence
                 entity.ToTable("TipObjave");
 
                 entity.Property(e => e.TipObjaveId).HasColumnName("TipObjaveID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Naziv).HasMaxLength(500);
             });
 
@@ -254,8 +320,15 @@ namespace Persistence
             {
                 entity.ToTable("Udruzenje");
 
+                entity.HasIndex(e => e.AdministrativnaJedinicaId, "IX_Udruzenje_AdministrativnaJedinicaID");
+
+                entity.HasIndex(e => e.NadredjenjoUdruzenjeId, "IX_Udruzenje_NadredjenjoUdruzenjeID");
+
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.LogoPath).HasMaxLength(500);
                 entity.Property(e => e.NadredjenjoUdruzenjeId).HasColumnName("NadredjenjoUdruzenjeID");
 
@@ -274,6 +347,9 @@ namespace Persistence
                 entity.ToTable("UlogaKorisnika");
 
                 entity.Property(e => e.UlogaKorisnikaId).HasColumnName("UlogaKorisnikaID");
+                entity.Property(e => e.Aktivno)
+                    .IsRequired()
+                    .HasDefaultValueSql("true");
                 entity.Property(e => e.Naziv).HasMaxLength(50);
                 entity.Property(e => e.Opis).HasMaxLength(500);
             });
@@ -282,5 +358,5 @@ namespace Persistence
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-    } 
+    }
 }

@@ -13,6 +13,8 @@ public partial class Dokument
 
     public int DatotekaId { get; set; }
 
+    public bool? Aktivno { get; set; }
+
     public virtual Datoteka Datoteka { get; set; } = null!;
 
     public virtual Udruzenje Udruzenje { get; set; } = null!;

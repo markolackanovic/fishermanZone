@@ -11,13 +11,15 @@ public partial class Objava
 
     public string Sadrzaj { get; set; } = null!;
 
-    public DateTime? DatumObjave { get; set; }
+    public DateOnly? DatumObjave { get; set; }
 
     public string LokacijaLat { get; set; } = null!;
 
     public string LokacijaLong { get; set; } = null!;
 
     public int TipObjaveId { get; set; }
+
+    public bool? Aktivno { get; set; }
 
     public virtual ICollection<DatotekaObjave> DatotekaObjaves { get; set; } = new List<DatotekaObjave>();
 
