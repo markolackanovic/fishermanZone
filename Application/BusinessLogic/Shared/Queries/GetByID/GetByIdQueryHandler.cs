@@ -4,8 +4,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using System.Linq.Expressions;
 
 namespace Application.BusinessLogic.Shared.Queries.GetByID
 {
@@ -31,13 +29,12 @@ namespace Application.BusinessLogic.Shared.Queries.GetByID
                 .Select(x => x.Name)
                 .SingleOrDefault();
 
-            var viewModel = await _context.Set<TEntity>()
-                .Where(ExpressionHelper<TEntity>.CreateExpression(keyName, request.Id))
+            var result = await _context.Set<TEntity>()
+                .Where(ExpressionHelper.CreateExpression<TEntity>(keyName, request.Id))
                 .ProjectTo<TViewModel>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
 
-            return viewModel;
+            return result;
         }
-
     }
 }
