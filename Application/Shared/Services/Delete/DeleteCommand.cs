@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.BusinessLogic.Shared.Delete
+namespace Application.Shared.Services.Delete
 {
     public class DeleteCommand : IRequest<int>
     {

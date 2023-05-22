@@ -14,23 +14,23 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.BusinessLogic.TipAdministrativneJedinice.Queries.SearchTipAdministrativneJedinice
+namespace Application.BusinessLogic.TipDatoteke.Queries.SearchTipDatoteke
 {
-    public class SearchTipAdministrativneJediniceQueryHandler : IRequestHandler<SearchTipAdministrativneJediniceQuery, PagedResponse<SearchTipAdministrativneJediniceViewModel>>
+    public class SearchTipDatotekeQueryHandler : IRequestHandler<SearchTipDatotekeQuery, PagedResponse<SearchTipDatotekeViewModel>>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public SearchTipAdministrativneJediniceQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public SearchTipDatotekeQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<PagedResponse<SearchTipAdministrativneJediniceViewModel>> Handle(SearchTipAdministrativneJediniceQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResponse<SearchTipDatotekeViewModel>> Handle(SearchTipDatotekeQuery request, CancellationToken cancellationToken)
         {
-            var result = await _context.Set<Domain.Entities.TipAdministrativneJedinice>()
+            var result = await _context.Set<Domain.Entities.TipDatoteke>()
                            .WhereIf(!string.IsNullOrEmpty(request.Naziv), c => c.Naziv.ToLower().Contains(request.Naziv.ToLower()))
-                           .ProjectTo<SearchTipAdministrativneJediniceViewModel>(_mapper.ConfigurationProvider)
+                           .ProjectTo<SearchTipDatotekeViewModel>(_mapper.ConfigurationProvider)
                            .PaginatedListAsync(request.PageNumber,request.PageSize);
             
             return result;

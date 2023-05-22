@@ -1,9 +1,8 @@
-﻿using Application.BusinessLogic.Shared;
-using Application.BusinessLogic.Shared.Create;
-using Application.BusinessLogic.Shared.Delete;
-using Application.BusinessLogic.Shared.Queries.GetByID;
-using Application.BusinessLogic.Shared.Update;
-using Application.Common.Behaviours;
+﻿using Application.Common.Behaviours;
+using Application.Shared.Services.Create;
+using Application.Shared.Services.Delete;
+using Application.Shared.Services.Queries.GetByID;
+using Application.Shared.Services.Update;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

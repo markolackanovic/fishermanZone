@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.BusinessLogic.Shared.Queries.GetByID
+namespace Application.Shared.Services.Queries.GetByID
 {
     public class GetByIdQuery<TViewModel> : IRequest<TViewModel>
         where TViewModel : class

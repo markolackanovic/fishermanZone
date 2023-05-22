@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.BusinessLogic.Shared.Create
+namespace Application.Shared.Services.Create
 {
     public class CreateCommand : IRequest<int>
     {

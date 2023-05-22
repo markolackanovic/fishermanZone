@@ -1,5 +1,5 @@
-﻿using Application.BusinessLogic.Shared.Delete;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
+using Application.Shared.Services.Delete;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

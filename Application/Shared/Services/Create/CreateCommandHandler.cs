@@ -2,9 +2,9 @@
 using AutoMapper;
 using MediatR;
 
-namespace Application.BusinessLogic.Shared.Create
+namespace Application.Shared.Services.Create
 {
-    public class CreateCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand,int>
+    public class CreateCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand, int>
         where TCommand : CreateCommand
         where TEntity : class, new()
     {
@@ -17,7 +17,7 @@ namespace Application.BusinessLogic.Shared.Create
             _mapper = mapper;
         }
 
-        public  async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<TCommand, TEntity>(request);
             var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
@@ -28,7 +28,7 @@ namespace Application.BusinessLogic.Shared.Create
             {
                 await _context.SaveChangesAsync(cancellationToken);
                 return (int)entity.GetType().GetProperty(keyName).GetValue(entity);
-             
+
 
             }
             catch (Exception ex)
