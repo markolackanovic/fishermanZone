@@ -1,6 +1,4 @@
-﻿using Application.BusinessLogic.AdministrativnaJedinica.Commands.CreateAdministrativnaJedinicaCommand;
-using Application.BusinessLogic.AdministrativnaJedinica.Commands.DeleteAdministrativnaJedinicaCommand;
-using Application.BusinessLogic.TipDatoteke.Commands.CreateTipDatotekeCommand;
+﻿using Application.BusinessLogic.TipDatoteke.Commands.CreateTipDatotekeCommand;
 using Application.BusinessLogic.TipDatoteke.Commands.DeleteTipDatotekeCommand;
 using Application.BusinessLogic.TipDatoteke.Commands.UpdateTipDatotekeCommand;
 using Application.BusinessLogic.TipDatoteke.Queries.GetTipDatotekeById;
