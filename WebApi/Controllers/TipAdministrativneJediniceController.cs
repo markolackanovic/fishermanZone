@@ -4,6 +4,8 @@ using Application.BusinessLogic.TipAdministrativneJedinice.Commands.CreateTipAdm
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.DeleteTipAdministrativneJediniceCommand;
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.UpdateTipAdministrativneJediniceCommand;
 using Application.BusinessLogic.TipAdministrativneJedinice.Queries;
+using Application.BusinessLogic.TipAdministrativneJedinice.Queries.SearchTipAdministrativneJedinice;
+using Application.Common.Models.Respones;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -41,6 +43,13 @@ namespace WebApi.Controllers
         public async Task<ActionResult<TipAdministrativneJediniceViewModel>> GetTipAdministrativneJediniceById(int id)
         {
             return Ok(await Mediator.Send(new GetTipAdministrativneJediniceByIdQuery { Id = id }));
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        [SwaggerOperation(Tags = new[] { "TipAdministrativneJedinice" })]
+        public async Task<ActionResult<PagedResponse<SearchTipAdministrativneJediniceViewModel>>> SearchTipAdministrativneJedinice(SearchTipAdministrativneJediniceQuery data)
+        {
+            return Ok(await Mediator.Send(data));
         }
 
     }

@@ -34,5 +34,6 @@ namespace WebApi.Controllers
         {
             return Ok(await Mediator.Send(new GetAdministrativnaJedinicaByIdQuery { Id = id }));
         }
+        
     }
 }

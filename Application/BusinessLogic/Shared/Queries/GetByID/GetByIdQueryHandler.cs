@@ -28,6 +28,10 @@ namespace Application.BusinessLogic.Shared.Queries.GetByID
                 .Properties
                 .Select(x => x.Name)
                 .SingleOrDefault();
+            if(keyName == null)
+            {
+                throw new ArgumentNullException(nameof(keyName));
+            }
 
             var result = await _context.Set<TEntity>()
                 .Where(ExpressionHelper.CreateExpression<TEntity>(keyName, request.Id))

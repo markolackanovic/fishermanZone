@@ -13,12 +13,12 @@ namespace Application.BusinessLogic.AdministrativnaJedinica.Queries
     {
         public int AdministrativnaJedinicaId { get; set; }
         public string Naziv { get; set; }
-        public string NazivTipAdmj { get; set; }
+        public string TipAdministrativneJedinice { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Domain.Entities.AdministrativnaJedinica, AdministrativnaJedinicaViewModel>()
-               .ForMember(dest => dest.NazivTipAdmj, opt => opt.MapFrom(src => src.TipAdministrativneJedinice.Naziv));
+               .ForMember(dest => dest.TipAdministrativneJedinice, opt => opt.MapFrom(src => src.TipAdministrativneJedinice.Naziv));
         } 
     }
 }

@@ -10,6 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Domain.Migrations
 {
+    //Ukoliko se rade migracije otkomentarisati ovde i na jos jednom mestu
     //[DbContext(typeof(BihfishingContext))]
     partial class BihfishingContextModelSnapshot : ModelSnapshot
     {
