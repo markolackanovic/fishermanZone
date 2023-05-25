@@ -16,5 +16,16 @@ namespace Application.Common.Helpers
             var expression = Expression.Lambda<Func<TEntity, bool>>(property, parameter);
             return expression;
         }
+        public static Expression<Func<TEntity, bool>> ActiveExpression<TEntity>()
+        {
+            var parameter = Expression.Parameter(typeof(TEntity), "x");
+            var property = Expression.Equal(Expression.Property(parameter, "Aktivno"),Expression.Constant(true));
+
+
+
+            var expression = Expression.Lambda<Func<TEntity, bool>>(property,parameter);
+            return expression;
+        }
+
     }
 }

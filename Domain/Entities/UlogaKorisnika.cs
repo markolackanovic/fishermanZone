@@ -11,5 +11,5 @@ public partial class UlogaKorisnika
 
     public string? Opis { get; set; }
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 }

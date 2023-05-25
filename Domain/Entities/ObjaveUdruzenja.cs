@@ -11,7 +11,7 @@ public partial class ObjaveUdruzenja
 
     public int UdruzenjeId { get; set; }
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 
     public virtual Objava Objava { get; set; } = null!;
 

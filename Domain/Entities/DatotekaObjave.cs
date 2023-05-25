@@ -11,7 +11,7 @@ public partial class DatotekaObjave
 
     public int ObjavaId { get; set; }
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 
     public virtual Datoteka Datoteka { get; set; } = null!;
 

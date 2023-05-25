@@ -23,7 +23,7 @@ namespace Application.Shared.Services.Delete
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
+        public virtual async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
         {
             var entity = _context.Set<TEntity>().Find(request.Id);
             var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties

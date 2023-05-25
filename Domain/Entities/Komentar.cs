@@ -13,7 +13,7 @@ public partial class Komentar
 
     public int ObjavaId { get; set; }
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 
     public virtual Korisnik Korisnik { get; set; } = null!;
 

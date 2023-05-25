@@ -16,7 +16,7 @@ namespace Application.Shared.Services.Update
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
+        public virtual async Task<int> Handle(TCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<TCommand, TEntity>(request);
             var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties

@@ -11,7 +11,7 @@ public partial class Datoteka
 
     public int TipDatotekeId { get; set; }
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 
     public virtual ICollection<DatotekaObjave> DatotekaObjaves { get; set; } = new List<DatotekaObjave>();
 

@@ -3,6 +3,7 @@ using Application.BusinessLogic.AdministrativnaJedinica.Commands.DeleteAdministr
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.CreateTipAdministrativneJediniceCommand;
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.DeleteTipAdministrativneJediniceCommand;
 using Application.BusinessLogic.TipAdministrativneJedinice.Commands.UpdateTipAdministrativneJediniceCommand;
+using Application.BusinessLogic.TipAdministrativneJedinice.Queries.GetAllQuery;
 using Application.BusinessLogic.TipAdministrativneJedinice.Queries.GetTipAdministrativneJediniceById;
 using Application.BusinessLogic.TipAdministrativneJedinice.Queries.SearchTipAdministrativneJedinice;
 using Application.Common.Models.Respones;
@@ -48,6 +49,13 @@ namespace WebApi.Controllers
         [HttpPost]
         [SwaggerOperation(Tags = new[] { "TipAdministrativneJedinice" })]
         public async Task<ActionResult<PagedResponse<SearchTipAdministrativneJediniceViewModel>>> SearchTipAdministrativneJedinice(SearchTipAdministrativneJediniceQuery data)
+        {
+            return Ok(await Mediator.Send(data));
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        [SwaggerOperation(Tags = new[] { "TipAdministrativneJedinice" })]
+        public async Task<ActionResult<PagedResponse<GetAllTipAdministrativneJediniceViewModel>>> GetAll(GetAllTipAdministrativneJediniceQuery data)
         {
             return Ok(await Mediator.Send(data));
         }

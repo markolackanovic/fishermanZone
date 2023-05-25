@@ -30,7 +30,7 @@ namespace Application.Common.Behaviours
             catch (Exception e)
             {
                 var name = typeof(TRequest).Name;
-                _logger.LogError($"TemplateKingICT Request Exception: {name}, Exception: {e.Message} ({e.InnerException?.Message}) {request}");
+                _logger.LogError($"BIHFishing Request Exception: {name}, Exception: {e.Message} ({e.InnerException?.Message}) {request}");
 
                 ExceptionDispatchInfo.Capture(e).Throw();
             }

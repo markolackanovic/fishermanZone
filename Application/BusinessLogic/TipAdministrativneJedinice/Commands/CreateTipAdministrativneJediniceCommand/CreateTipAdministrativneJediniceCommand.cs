@@ -8,5 +8,4 @@ namespace Application.BusinessLogic.TipAdministrativneJedinice.Commands.CreateTi
 public class CreateTipAdministrativneJediniceCommand : CreateCommand , IMapFrom<Domain.Entities.TipAdministrativneJedinice>
 {
     public string Naziv { get; set; }
-    public bool Aktivno { get; set; }
 }

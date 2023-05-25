@@ -11,7 +11,7 @@ public partial class AdministrativnaJedinica
 
     public int? TipAdministrativneJediniceId { get; set; }
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 
     public virtual TipAdministrativneJedinice? TipAdministrativneJedinice { get; set; }
 

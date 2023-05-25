@@ -1,4 +1,5 @@
-﻿using Application.Common.Helpers;
+﻿using Application.Common.Exceptions;
+using Application.Common.Helpers;
 using Application.Common.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -22,7 +23,7 @@ namespace Application.Shared.Services.Queries.GetByID
             _mapper = mapper;
         }
 
-        public async Task<TViewModel> Handle(TQuery request, CancellationToken cancellationToken)
+        public virtual async Task<TViewModel> Handle(TQuery request, CancellationToken cancellationToken)
         {
             var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey()
                 .Properties
@@ -37,6 +38,10 @@ namespace Application.Shared.Services.Queries.GetByID
                 .Where(ExpressionHelper.CreateExpression<TEntity>(keyName, request.Id))
                 .ProjectTo<TViewModel>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
+            if(result == null)
+            {
+                throw new NotFoundException(typeof(TEntity).Name, request.Id);
+            }
 
             return result;
         }

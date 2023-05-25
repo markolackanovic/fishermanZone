@@ -9,7 +9,7 @@ public partial class TipAdministrativneJedinice
 
     public string Naziv { get; set; } = null!;
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 
     public virtual ICollection<AdministrativnaJedinica> AdministrativnaJedinicas { get; set; } = new List<AdministrativnaJedinica>();
 }

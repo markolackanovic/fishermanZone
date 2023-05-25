@@ -19,7 +19,7 @@ public partial class Udruzenje
 
     public string? LogoPath { get; set; }
 
-    public bool? Aktivno { get; set; }
+    public bool Aktivno { get; set; }
 
     public virtual AdministrativnaJedinica AdministrativnaJedinica { get; set; } = null!;
 
