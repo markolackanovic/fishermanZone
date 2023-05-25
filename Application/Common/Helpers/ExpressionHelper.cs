@@ -13,7 +13,8 @@ namespace Application.Common.Helpers
         {
             var parameter = Expression.Parameter(typeof(TEntity), "x");
             var property = Expression.Equal(Expression.Property(parameter, keyName), Expression.Constant(Id));
-            return Expression.Lambda<Func<TEntity, bool>>(property, parameter);
+            var expression = Expression.Lambda<Func<TEntity, bool>>(property, parameter);
+            return expression;
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Application.BusinessLogic.Shared.Create;
-using Application.Common.Mappings;
+﻿using Application.Common.Mappings;
+using Application.Shared.Services.Create;
 using Domain.Entities;
 using MediatR;
 using System;
