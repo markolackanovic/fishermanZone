@@ -1,0 +1,13 @@
+﻿using Application.BusinessLogic.Shared.Delete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.BusinessLogic.TipClana.Commands.DeleteTipClanaCommand
+{
+    public class DeleteTipClanaCommand : DeleteCommand
+    {
+    }
+}
