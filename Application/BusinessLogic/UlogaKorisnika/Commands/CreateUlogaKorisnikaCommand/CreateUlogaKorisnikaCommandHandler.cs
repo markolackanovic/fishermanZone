@@ -1,5 +1,4 @@
-﻿using Application.BusinessLogic.Shared;
-using Application.BusinessLogic.Shared.Create;
+﻿using Application.Shared.Services.Create;
 using Application.Common.Interfaces;
 using AutoMapper;
 using Domain.Entities;

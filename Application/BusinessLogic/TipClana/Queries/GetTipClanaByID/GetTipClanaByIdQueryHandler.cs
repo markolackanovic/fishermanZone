@@ -1,5 +1,5 @@
-﻿using Application.BusinessLogic.Shared.Queries.GetByID;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
+using Application.Shared.Services.Queries.GetByID;
 using AutoMapper;
 
 namespace Application.BusinessLogic.GetTipClana.Queries.GetTipClanaByID

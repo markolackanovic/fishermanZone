@@ -1,4 +1,4 @@
-﻿using Application.BusinessLogic.Shared.Delete;
+﻿using Application.Shared.Services.Delete;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,7 +1,7 @@
-﻿using Application.BusinessLogic.Shared.Create;
-using Application.Common.Mappings;
+﻿using Application.Common.Mappings;
 using AutoMapper;
 using MediatR;
+using Application.Shared.Services.Create;
 
 namespace Application.BusinessLogic.TipClana.Commands.CreateTipClanaCommand;
 

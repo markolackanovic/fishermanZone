@@ -1,4 +1,4 @@
-﻿using Application.BusinessLogic.Shared.Queries.GetByID;
+﻿using Application.Shared.Services.Queries.GetByID;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;

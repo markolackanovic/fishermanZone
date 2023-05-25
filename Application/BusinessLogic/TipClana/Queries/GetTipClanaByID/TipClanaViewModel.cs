@@ -1,5 +1,4 @@
-﻿using Application.BusinessLogic.Shared.Queries.GetByID;
-using Application.Common.Mappings;
+﻿using Application.Common.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

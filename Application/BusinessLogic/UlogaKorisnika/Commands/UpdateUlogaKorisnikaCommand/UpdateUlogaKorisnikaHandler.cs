@@ -1,5 +1,5 @@
-﻿using Application.BusinessLogic.Shared.Update;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
+using Application.Shared.Services.Update;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
