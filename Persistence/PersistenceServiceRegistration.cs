@@ -13,10 +13,11 @@ namespace Persistence
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                   builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
+               options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
+               builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+        
             return services;
+
         }
     }
 }
