@@ -4,18 +4,32 @@ using Application.Common.Interfaces;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace Persistence
 {
     public partial class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        private readonly IMediator _mediator;
+        //private readonly IMediator _mediator;
 
-        public ApplicationDbContext(IMediator mediator)
+        //public ApplicationDbContext(IMediator mediator)
+        //{
+        //    _mediator = mediator;
+        //}
+        //private IDbContextTransaction _transaction;
+
+        //public IDbContextTransaction Transaction
+        //{
+        //    get { return _transaction; }
+        //    set { _transaction = value; }
+        //}
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+          : base(options)
         {
-            _mediator = mediator;
         }
+
         public virtual DbSet<AdministrativnaJedinica> AdministrativnaJedinicas { get; set; }
 
         public virtual DbSet<Datoteka> Datotekas { get; set; }
@@ -46,9 +60,9 @@ namespace Persistence
 
         public virtual DbSet<UlogaKorisnika> UlogaKorisnikas { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-            => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;User ID=postgres;Password=Pa$$w0rd;Database=BIHFishing;Trust Server Certificate=false;");
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//            => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;User ID=postgres;Password=Pa$$w0rd;Database=BIHFishing;Trust Server Certificate=false;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
