@@ -13,4 +13,8 @@
     <None Remove="Client\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="App\src\app\association\" />
+  </ItemGroup>
+
 </Project>
