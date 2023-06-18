@@ -5,7 +5,6 @@ namespace Application.BusinessLogic.TipObjave.Commands.CreateTipObjaveCommand
 {
     public class CreateTipObjaveCommand : CreateCommand, IMapFrom<Domain.Entities.TipObjave>
     {
-        public string Naziv { get; set; }
-        public bool Aktivno { get; set; }
+        public string Naziv { get; set; } = string.Empty;
     }
 }

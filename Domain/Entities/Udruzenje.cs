@@ -7,7 +7,7 @@ public partial class Udruzenje
 {
     public int UdruzenjeId { get; set; }
 
-    public int? NadredjenjoUdruzenjeId { get; set; }
+    public int? NadredjenoUdruzenjeId { get; set; }
 
     public string Naziv { get; set; } = null!;
 

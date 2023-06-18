@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.BusinessLogic
+namespace Application.BusinessLogic.Udruzenje.Commands.Create
 {
     public class CreateUdruzenjeCommand : CreateCommand, IMapFrom<Domain.Entities.Udruzenje>
     {
@@ -15,7 +15,9 @@ namespace Application.BusinessLogic
         public string Naziv { get; set; }
         public int AdministrativnaJedinicaID { get; set; }
         public string Adresa { get; set; }
+        public string Telefon { get; set; }
+        public string? Email { get; set; }
         public string Opis { get; set; }
-        public string LogoPath { get; set; }
+        public string? LogoPath { get; set; }
     }
 }

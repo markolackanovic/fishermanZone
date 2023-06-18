@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.BusinessLogic.Udruzenje.Delete
+namespace Application.BusinessLogic.Udruzenje.Commands.Delete
 {
     public class DeleteUdruzenjeCommandHandler : DeleteCommandHandler<DeleteUdruzenjeCommand, Domain.Entities.Udruzenje>
     {

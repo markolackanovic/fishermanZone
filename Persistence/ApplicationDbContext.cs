@@ -296,12 +296,12 @@ namespace Persistence
 
                 entity.HasIndex(e => e.AdministrativnaJedinicaId, "IX_Udruzenje_AdministrativnaJedinicaID");
 
-                entity.HasIndex(e => e.NadredjenjoUdruzenjeId, "IX_Udruzenje_NadredjenjoUdruzenjeID");
+                entity.HasIndex(e => e.NadredjenoUdruzenjeId, "IX_Udruzenje_NadredjenoUdruzenjeID");
 
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
                 entity.Property(e => e.LogoPath).HasMaxLength(500);
-                entity.Property(e => e.NadredjenjoUdruzenjeId).HasColumnName("NadredjenjoUdruzenjeID");
+                entity.Property(e => e.NadredjenoUdruzenjeId).HasColumnName("NadredjenoUdruzenjeID");
 
                 entity.HasOne(d => d.AdministrativnaJedinica).WithMany(p => p.Udruzenjes)
                     .HasForeignKey(d => d.AdministrativnaJedinicaId)
@@ -309,7 +309,7 @@ namespace Persistence
                     .HasConstraintName("FK_Udruzenje_AdministrativnaJedinica");
 
                 entity.HasOne(d => d.NadredjenjoUdruzenje).WithMany(p => p.InverseNadredjenjoUdruzenje)
-                    .HasForeignKey(d => d.NadredjenjoUdruzenjeId)
+                    .HasForeignKey(d => d.NadredjenoUdruzenjeId)
                     .HasConstraintName("FK_Udruzenje_Udruzenje");
             });
 

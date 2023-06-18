@@ -7,7 +7,9 @@ import { ToastService } from './toast/toast.service';
 import { LanguageService } from './language/language.service';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ExceptionService {
     constructor(
         private toastService: ToastService,

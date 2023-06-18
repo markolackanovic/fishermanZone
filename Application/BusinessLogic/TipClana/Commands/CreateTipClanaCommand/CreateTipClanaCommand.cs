@@ -7,6 +7,5 @@ namespace Application.BusinessLogic.TipClana.Commands.CreateTipClanaCommand;
 
 public class CreateTipClanaCommand : CreateCommand , IMapFrom<Domain.Entities.TipClana>
 {
-    public string Naziv { get; set; }
-    public bool Aktivno { get; set; }
+    public string Naziv { get; set; } = string.Empty;
 }

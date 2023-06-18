@@ -1,145 +1,180 @@
-<div class="container-fluid ps-md-0">
-  <div class="row g-0">
-    <div class="col-md-12 col-lg-12">
-      <div class="login d-flex align-items-center py-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-9 col-lg-8 mx-auto">
-              <form (ngSubmit)="onSubmit()">
-                <h2>Registracija udruženja</h2>
-                <mat-card class="example-card">
-                  <mat-card-header>
-                    <mat-card-title style="margin-bottom:7px;">Osnovni podaci o udruženju</mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content>
-
-                    <div class="col-md-12">
-                      <mat-form-field appearance="fill">
-                        <mat-label>Ribolovački savez</mat-label>
-                        <mat-select>
-                          <mat-option *ngFor="let parentAssociation of parentAssociations" [value]="parentAssociation.value">
-                            {{ parentAssociation.viewValue }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-
-                    <div class="col-md-12">
-                      <mat-form-field>
-                        <mat-label>Naziv udruženja</mat-label>
-                        <input type="text" matInput>
-                      </mat-form-field>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md">
-                        <mat-form-field appearance="fill">
-                          <mat-label>Mjesto udruženja</mat-label>
-                          <mat-select>
-                            <mat-option *ngFor="let place of places" [value]="place.value">
-                              {{ place.viewValue }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Adresa udruženja</mat-label>
-                          <input type="text" matInput>
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Kontakt telefon udruženja</mat-label>
-                          <input type="text" matInput>
-                        </mat-form-field>
-                      </div>
-
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Email adresa udruženja</mat-label>
-                          <input type="text" matInput>
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <mat-form-field class="example-full-width">
-                        <mat-label>Kratak opis udruženja</mat-label>
-                        <textarea matInput placeholder="Npr. godina osnivanja, aktivnosti, itd."></textarea>
-                      </mat-form-field>
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-
-                <mat-card class="example-card" style="margin-top:5px">
-                  <mat-card-header>
-                    <mat-card-title style="margin-bottom:7px;">Osnovni podaci o administratoru udruženja</mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content>
-
-                    <div class="row">
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Ime</mat-label>
-                          <input type="text" matInput>
-                        </mat-form-field>
-                      </div>
-
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Prezime</mat-label>
-                          <input type="text" matInput>
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Email</mat-label>
-                          <input type="text" matInput>
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Lozinka</mat-label>
-                          <input type="password" matInput>
-                        </mat-form-field>
-                      </div>
-
-                      <div class="col-md">
-                        <mat-form-field>
-                          <mat-label>Ponovljena lozinka</mat-label>
-                          <input type="password" matInput>
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-
-                <div class="row" style="margin-top:10px">
-                  <div class="col-md" style="text-align:right">
-                    <button class="btn btn-lg btn-primary btn-login mb-2" type="submit">Završi registraciju</button>
-                  </div>
-
-                  <div class="col-md">
-                    <button class="btn btn-lg btn-login mb-2" type="button">Otkaži</button>
-                  </div>
-                </div>
-
-              </form>
-            </div>
+<div class="container mx-auto px-4">
+  <div class="flex content-center items-center justify-center h-full">
+    <div class="w-full lg:w-8/12 mt-4">
+      <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+        <div class="flex-auto lg:px-10 py-10 pt-0">
+          <div class="w-full lg:w-12/12 px-2">
+            <h1 class="text-2xl font-bold mt-4 mb-6 text-center uppercase text-blueGray-800">
+              Registracija udruženja
+            </h1>
           </div>
+
+          <form name="form" (ngSubmit)="f.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="w-full lg:w-12/12 px-2">
+              <h6 class="text-blueGray-400 text-sm mt-3 mb-4 font-bold">Osnovni podaci o udruženju</h6>
+            </div>
+
+            <div class="w-full lg:w-12/12 px-2">
+              <div class="relative w-full mb-3 mt-3">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Ribolovački savez*</label>
+                <select required [(ngModel)]="registrationModel.nadredjenoUdruzenjeId" name="nadredjenoUdruzenjeId" #nadredjenoUdruzenjeId="ngModel" autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                  <option [value]="0">-- Odaberite --</option>
+                  <option *ngFor="let udruzenje of udruzenja" [value]="udruzenje.udruzenjeId">
+                    {{ udruzenje.naziv }}
+                  </option>
+                </select>
+                <div *ngIf="f.submitted && registrationModel.nadredjenoUdruzenjeId < 1" class="error-input">Odaberite ribolovački savez kojem Vaše udruženje pripada</div>
+              </div>
+            </div>
+
+            <div class="w-full lg:w-12/12 px-2">
+              <div class="relative w-full mb-3">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Naziv udruženja*</label>
+                <input type="text" [(ngModel)]="registrationModel.naziv" name="naziv" #naziv="ngModel" required autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && naziv.invalid" class="error-input">Unesite naziv Vašeg udruženja</div>
+                <div *ngIf="f.submitted && naziv.valid && registrationModel.naziv?.length < 3" class="error-input">Naziv udruženja mora sadržavati minimalno 3 karaktera</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap mb-3">
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Mjesto udruženja*</label>
+                <select autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" required [(ngModel)]="registrationModel.administrativnaJedinicaId" name="administrativnaJedinicaId" #administrativnaJedinicaId="ngModel">
+                  <option [value]="0">-- Odaberite --</option>
+                  <option *ngFor="let admJedinica of admJedinice" [value]="admJedinica.administrativnaJedinicaId">
+                    {{ admJedinica.naziv }}
+                  </option>
+                </select>
+                <div *ngIf="f.submitted && registrationModel.administrativnaJedinicaId < 1" class="error-input">Odaberite mjesto Vašeg udruženja</div>
+              </div>
+
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Adresa udruženja*</label>
+                <input type="text" required autocomplete="off" [(ngModel)]="registrationModel.adresa" name="adresa" #adresa="ngModel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && adresa.invalid" class="error-input">Unesite adresu udruženja</div>
+                <div *ngIf="f.submitted && adresa.valid && registrationModel.adresa?.length < 3" class="error-input">Adresa udruženja mora sadržavati minimalno 3 karaktera</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap mb-3">
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Kontakt telefon udruženja*</label>
+
+                <ngx-intl-tel-input [(ngModel)]="telefonUdruzenja"
+                                    [cssClass]="'border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ng-untouched ng-pristine ng-invalid'"
+                                    [onlyCountries]="preferredCountries"
+                                    [customPlaceholder]="customPlaceholder"
+                                    [enableAutoCountrySelect]="false"
+                                    [enablePlaceholder]="true"
+                                    [searchCountryFlag]="false"
+                                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                    [selectFirstCountry]="false"
+                                    [selectedCountryISO]="CountryISO.BosniaAndHerzegovina"
+                                    [maxLength]="10"
+                                    [phoneValidation]="true"
+                                    [separateDialCode]="true"
+                                    [numberFormat]="PhoneNumberFormat.National"
+                                    [inputId]="telefonUdruzenja"
+                                    name="phone"
+                                    #phone="ngModel"></ngx-intl-tel-input>
+                <div *ngIf="f.submitted && telefonUdruzenja == null" class="error-input">Unesite kontakt telefon udruženja</div>
+                <div *ngIf="f.submitted && phone.invalid" class="error-input">Broj telefona udruženja nije ispravan</div>
+              </div>
+
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Email adresa udruženja</label>
+                <input type="email" [(ngModel)]="registrationModel.email" name="email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && email.invalid && registrationModel.email?.length >= 1" class="error-input">Email adresa nije ispravna</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap mb-3">
+              <div class="w-full lg:w-12/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Kratak opis udruženja*</label>
+                <textarea required autocomplete="off" [(ngModel)]="registrationModel.opis" name="opis" #opis="ngModel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"></textarea>
+                <div *ngIf="f.submitted && opis.invalid" class="error-input">Unesite kratak opis udruženja</div>
+                <div *ngIf="f.submitted && opis.valid && registrationModel.opis?.length < 20" class="error-input">Opis mora sadržavati minimalno 20 karaktera</div>
+              </div>
+            </div>
+
+            <div class="w-full lg:w-12/12 px-2">
+              <h6 class="text-blueGray-400 text-sm mt-3 mb-4 font-bold">Osnovni podaci o administratoru udruženja</h6>
+            </div>
+
+            <div class="flex flex-wrap mb-3">
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Ime*</label>
+                <input type="text" required autocomplete="off" [(ngModel)]="administrator.ime" name="ime" #ime="ngModel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && ime.invalid" class="error-input">Unesite ime administratora udruženja</div>
+                <div *ngIf="f.submitted && ime.valid && administrator.ime?.length < 3" class="error-input">Ime mora sadržavati minimalno 3 karaktera</div>
+              </div>
+
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Prezime*</label>
+                <input type="text" required autocomplete="off" [(ngModel)]="administrator.prezime" name="prezime" #prezime="ngModel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && prezime.invalid" class="error-input">Unesite prezime administratora udruženja</div>
+                <div *ngIf="f.submitted && prezime.valid && administrator.prezime?.length < 3" class="error-input">Prezime mora sadržavati minimalno 3 karaktera</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap mb-3">
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Email adresa*</label>
+                <input type="email" required [(ngModel)]="administrator.korisnickoIme" name="admEmail" #admEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && admEmail.invalid && administrator.korisnickoIme?.length < 1" class="error-input">Unesite email adresu administatora udruženja</div>
+                <div *ngIf="f.submitted && admEmail.invalid && administrator.korisnickoIme?.length >= 1" class="error-input">Email adresa nije ispravna</div>
+              </div>
+
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Broj telefona</label>
+                <ngx-intl-tel-input [(ngModel)]="telefonAdministratora"
+                                    [cssClass]="'border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ng-untouched ng-pristine ng-invalid'"
+                                    [onlyCountries]="preferredCountries"
+                                    [customPlaceholder]="customPlaceholder"
+                                    [enableAutoCountrySelect]="false"
+                                    [enablePlaceholder]="true"
+                                    [searchCountryFlag]="false"
+                                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                    [selectFirstCountry]="false"
+                                    [selectedCountryISO]="CountryISO.BosniaAndHerzegovina"
+                                    [maxLength]="10"
+                                    [phoneValidation]="true"
+                                    [separateDialCode]="true"
+                                    [numberFormat]="PhoneNumberFormat.National"
+                                    [inputId]="telefonAdministratora"
+                                    name="admPhone"
+                                    #admPhone="ngModel"></ngx-intl-tel-input>
+                <div *ngIf="f.submitted && telefonAdministratora == null" class="error-input">Unesite kontakt telefon administratora</div>
+                <div *ngIf="f.submitted && admPhone.invalid" class="error-input">Broj telefona nije ispravan</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap mb-3">
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Lozinka*</label>
+                <input type="password" required autocomplete="off" [(ngModel)]="administrator.lozinka" name="lozinka" #lozinka="ngModel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && lozinka.invalid" class="error-input">Unesite lozinku</div>
+                <div *ngIf="f.submitted && lozinka.valid && administrator.lozinka?.length < 8" class="error-input">Lozinka mora sadržavati minimalno 8 karaktera</div>
+              </div>
+
+              <div class="w-full lg:w-6/12 px-2">
+                <label class="block text-blueGray-600 text-xs font-bold mb-2">Ponovljena lozinka*</label>
+                <input type="password" required autocomplete="off" [(ngModel)]="administrator.repeatedPassword" name="repeatedPassword" #repeatedPassword="ngModel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div *ngIf="f.submitted && repeatedPassword.invalid" class="error-input">Unesite ponovljenu lozinku</div>
+                <div *ngIf="f.submitted && administrator.lozinka != administrator.repeatedPassword" class="error-input">Lozinke se ne podudaraju</div>
+              </div>
+            </div>
+
+            <div class="text-center mt-6">
+              <button class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      type="submit">
+                Kreiraj nalog
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+

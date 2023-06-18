@@ -3,9 +3,11 @@ using Application.BusinessLogic.TipObjave.Commands.DeleteTipObjaveCommand;
 using Application.BusinessLogic.TipObjave.Commands.UpdateTipObjaveCommand;
 using Application.BusinessLogic.TipObjave.Queries.GetTipObjaveById;
 using Application.BusinessLogic.TipObjave.Queries.SearchTipObjave;
+using Application.Common.Infrastructure.Settings;
 using Application.Common.Models.Respones;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
@@ -13,6 +15,10 @@ namespace WebApi.Controllers
     [Authorize]
     public class TipObjaveController : ApiBaseController
     {
+        public TipObjaveController(IOptions<AppSettings> appSettings) : base(appSettings)
+        {
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [SwaggerOperation(Tags = new[] { "TipObjave" })]

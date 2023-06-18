@@ -170,7 +170,7 @@ namespace Domain.Migrations
                 {
                     UdruzenjeID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    NadredjenjoUdruzenjeID = table.Column<int>(type: "integer", nullable: true),
+                    NadredjenoUdruzenjeID = table.Column<int>(type: "integer", nullable: true),
                     Naziv = table.Column<string>(type: "text", nullable: false),
                     AdministrativnaJedinicaID = table.Column<int>(type: "integer", nullable: false),
                     Adresa = table.Column<string>(type: "text", nullable: true),
@@ -187,7 +187,7 @@ namespace Domain.Migrations
                         principalColumn: "AdministrativnaJedinicaID");
                     table.ForeignKey(
                         name: "FK_Udruzenje_Udruzenje",
-                        column: x => x.NadredjenjoUdruzenjeID,
+                        column: x => x.NadredjenoUdruzenjeID,
                         principalTable: "Udruzenje",
                         principalColumn: "UdruzenjeID");
                 });
@@ -397,9 +397,9 @@ namespace Domain.Migrations
                 column: "AdministrativnaJedinicaID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Udruzenje_NadredjenjoUdruzenjeID",
+                name: "IX_Udruzenje_NadredjenoUdruzenjeID",
                 table: "Udruzenje",
-                column: "NadredjenjoUdruzenjeID");
+                column: "NadredjenoUdruzenjeID");
         }
 
         /// <inheritdoc />

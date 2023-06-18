@@ -1,7 +1,7 @@
 ﻿using Application.Common.Mappings;
 using AutoMapper;
 
-namespace Application.BusinessLogic.AdministrativnaJedinica.Queries
+namespace Application.BusinessLogic.AdministrativnaJedinica.Queries.GetById
 {
     public class AdministrativnaJedinicaViewModel : IMapFrom<Domain.Entities.AdministrativnaJedinica>
     {
@@ -13,6 +13,6 @@ namespace Application.BusinessLogic.AdministrativnaJedinica.Queries
         {
             profile.CreateMap<Domain.Entities.AdministrativnaJedinica, AdministrativnaJedinicaViewModel>()
                .ForMember(dest => dest.TipAdministrativneJedinice, opt => opt.MapFrom(src => src.TipAdministrativneJedinice.Naziv));
-        } 
+        }
     }
 }

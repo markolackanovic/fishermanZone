@@ -3,14 +3,20 @@ using Application.BusinessLogic.TipAdministrativneJedinice.Queries;
 using Application.BusinessLogic.TipClana.Commands.CreateTipClanaCommand;
 using Application.BusinessLogic.TipClana.Commands.DeleteTipClanaCommand;
 using Application.BusinessLogic.TipClana.Commands.UpdateTipClanaCommand;
+using Application.Common.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
 {
     public class TipClanaController : ApiBaseController
     {
+        public TipClanaController(IOptions<AppSettings> appSettings) : base(appSettings)
+        {
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [SwaggerOperation(Tags = new[] { "TipClana" })]

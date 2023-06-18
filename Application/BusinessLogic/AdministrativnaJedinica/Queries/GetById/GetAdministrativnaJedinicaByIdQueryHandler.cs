@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.BusinessLogic.AdministrativnaJedinica.Queries
+namespace Application.BusinessLogic.AdministrativnaJedinica.Queries.GetById
 {
     public class GetAdministrativnaJedinicaByIdQueryHandler : GetByIdQueryHandler<AdministrativnaJedinicaViewModel, GetAdministrativnaJedinicaByIdQuery, Domain.Entities.AdministrativnaJedinica>
     {

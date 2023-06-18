@@ -8,7 +8,6 @@ namespace Application.BusinessLogic.TipDatoteke.Commands.CreateTipDatotekeComman
 {
     public class CreateTipDatotekeCommand : CreateCommand, IMapFrom<Domain.Entities.TipDatoteke>
     {
-        public string Naziv { get; set; }
-        public bool Aktivno { get; set; }
+        public string Naziv { get; set; } = string.Empty;
     }
 }
