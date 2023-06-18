@@ -3,9 +3,11 @@ using Application.BusinessLogic.TipDatoteke.Commands.DeleteTipDatotekeCommand;
 using Application.BusinessLogic.TipDatoteke.Commands.UpdateTipDatotekeCommand;
 using Application.BusinessLogic.TipDatoteke.Queries.GetTipDatotekeById;
 using Application.BusinessLogic.TipDatoteke.Queries.SearchTipDatoteke;
+using Application.Common.Infrastructure.Settings;
 using Application.Common.Models.Respones;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
@@ -13,6 +15,10 @@ namespace WebApi.Controllers
     [Authorize]
     public class TipDatotekeController : ApiBaseController
     {
+        public TipDatotekeController(IOptions<AppSettings> appSettings) : base(appSettings)
+        {
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [SwaggerOperation(Tags = new[] { "TipDatoteke" })]

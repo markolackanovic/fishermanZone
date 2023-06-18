@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.BusinessLogic
+namespace Application.BusinessLogic.Udruzenje.Commands.Create
 {
     public class CreateUdruzenjeCommandHandler : CreateCommandHandler<CreateUdruzenjeCommand, Domain.Entities.Udruzenje>
     {

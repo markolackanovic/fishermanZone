@@ -8,24 +8,8 @@ namespace Application.Common.Infrastructure.Settings
 {
     public class AppSettings
     {
-        public string AllowedHosts { get; set; }
-        public string AllowedMethods { get; set; }
-        public string Secret { get; set; }
-        public string WebAppTokenDurationDays { get; set; }
-        public string ServiceUserTokenDurationDays { get; set; }
-        public string APIUsername { get; set; }
-        public string APIPassword { get; set; }
-        public string DocumentPath { get; set; }
-
-        public string NewDatasetDocumentPath { get; set; }
-        public string NewDataSetEmailSender { get; set; }
-        public string NewDataSetEmailResiver { get; set; }
-        public string SmtpClientUserName { get; set; }
-        public string SmtpClientPassword { get; set; }
-        public int SmtpClientPort { get; set; }
-        public string SmtpClientHost { get; set; }
-        public string SmtpClientDomainName { get; set; }
-        public string MsgFromDisplayName { get; set; }
-
+        public string AllowedHosts { get; set; } = string.Empty;
+        public string TokenDurationDays { get; set; } = string.Empty;
+        public string Secret { get; set; } = string.Empty;
     }
 }

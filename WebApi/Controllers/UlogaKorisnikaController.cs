@@ -2,14 +2,20 @@
 using Application.BusinessLogic.UlogaKorisnika.Commands.DeleteUlogaKorisnikaCommand;
 using Application.BusinessLogic.UlogaKorisnika.Commands.UpdateUlogaKorisnikaCommand;
 using Application.BusinessLogic.UlogaKorisnika.Queries.GetUlogaKorisnikaByID;
+using Application.Common.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
 {
     public class UlogaKorisnikaController : ApiBaseController
     {
+        public UlogaKorisnikaController(IOptions<AppSettings> appSettings) : base(appSettings)
+        {
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [SwaggerOperation(Tags = new[] { "UlogaKorisnika" })]

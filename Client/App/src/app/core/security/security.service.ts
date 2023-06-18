@@ -3,20 +3,24 @@ import { Injectable } from '@angular/core';
 import { UrlAccessRight } from './../models/admin/access-rights/url-access-right.model';
 import { LoginResponseModel } from '../../login/login-response.model';
 import { LoggedInUserModel } from './../models/admin/login/logged-in-user.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SecurityService {
-  public _token: string;
+  public _token: string | undefined;
   public _isLoggedIn: boolean | undefined;
 
   public accessRigthId: number = 0;
   private currentUserSubject: BehaviorSubject<LoggedInUserModel>;
+  public currentUser: Observable<LoggedInUserModel>;
+
   constructor() {
     this.currentUserSubject = new BehaviorSubject<LoggedInUserModel>(JSON.parse(localStorage.getItem('currentUser')!));
-    let currentUser: LoginResponseModel = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    this._token = currentUser && currentUser.token || '{}';
+    this.currentUser = this.currentUserSubject.asObservable();
   }
+
 
   public get token(): string {
     let currentUser: LoginResponseModel = JSON.parse(localStorage.getItem('currentUser') || '{}');
@@ -24,12 +28,14 @@ export class SecurityService {
 
     return this._token;
   }
+
   public getApiTokenInfo(): any {
     return {
       apiToken: JSON.parse(localStorage.getItem('currentUser')!).apitoken,
       date: JSON.parse(localStorage.getItem('currentUser')!).apitokenDateCreated
     }
   }
+
   public get isLoggedIn() {
     this._isLoggedIn = false;
 
@@ -46,6 +52,13 @@ export class SecurityService {
     }
     return this._isLoggedIn;
   }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+
+    this.currentUserSubject.next(new LoggedInUserModel());
+  }
+
   saveToLocalStorage(loggedUserModel: LoggedInUserModel) {
     localStorage.setItem('currentUser', JSON.stringify(loggedUserModel));
     this.currentUserSubject.next(loggedUserModel);

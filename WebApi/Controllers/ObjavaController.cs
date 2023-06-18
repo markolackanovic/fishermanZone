@@ -5,10 +5,12 @@ using Application.BusinessLogic.Objava.Commands.DeleteObjava;
 using Application.BusinessLogic.Objava.Commands.UpdateObjava;
 using Application.BusinessLogic.Objava.Queries.GetAllQuery;
 using Application.BusinessLogic.TipAdministrativneJedinice.Queries.GetAllQuery;
+using Application.Common.Infrastructure.Settings;
 using Application.Common.Models.Respones;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
@@ -16,6 +18,11 @@ namespace WebApi.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ObjavaController : ApiBaseController
     {
+        public ObjavaController(IOptions<AppSettings> appSettings) : base(appSettings)
+        {
+        }
+
+        [AllowAnonymous]
         [HttpPost]
         [SwaggerOperation(Tags = new[] { "Objava" })]
         [HasPermission(Permission.ReadMember)]

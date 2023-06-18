@@ -423,9 +423,9 @@ namespace Domain.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
-                    b.Property<int?>("NadredjenjoUdruzenjeId")
+                    b.Property<int?>("NadredjenoUdruzenjeId")
                         .HasColumnType("integer")
-                        .HasColumnName("NadredjenjoUdruzenjeID");
+                        .HasColumnName("NadredjenoUdruzenjeID");
 
                     b.Property<string>("Naziv")
                         .IsRequired()
@@ -438,7 +438,7 @@ namespace Domain.Migrations
 
                     b.HasIndex("AdministrativnaJedinicaId");
 
-                    b.HasIndex("NadredjenjoUdruzenjeId");
+                    b.HasIndex("NadredjenoUdruzenjeId");
 
                     b.ToTable("Udruzenje", (string)null);
                 });
@@ -614,7 +614,7 @@ namespace Domain.Migrations
 
                     b.HasOne("Domain.Entities.Udruzenje", "NadredjenjoUdruzenje")
                         .WithMany("InverseNadredjenjoUdruzenje")
-                        .HasForeignKey("NadredjenjoUdruzenjeId")
+                        .HasForeignKey("NadredjenoUdruzenjeId")
                         .HasConstraintName("FK_Udruzenje_Udruzenje");
 
                     b.Navigation("AdministrativnaJedinica");

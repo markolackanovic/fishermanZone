@@ -6,7 +6,9 @@ export interface ToastMessage {
     cssClass: string;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ToastService {
     public toastSubject = new Subject<ToastMessage>();
 

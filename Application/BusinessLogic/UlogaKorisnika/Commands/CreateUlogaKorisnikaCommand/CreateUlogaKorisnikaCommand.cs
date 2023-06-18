@@ -7,7 +7,6 @@ namespace Application.BusinessLogic.UlogaKorisnika.Commands.CreateUlogaKorisnika
 
 public class CreateUlogaKorisnikaCommand : CreateCommand , IMapFrom<Domain.Entities.UlogaKorisnika>
 {
-    public string Naziv { get; set; }
-    public string Opis { get; set; }
-    public bool Aktivno { get; set; }
+    public string Naziv { get; set; } = string.Empty;
+    public string Opis { get; set; } = string.Empty;
 }

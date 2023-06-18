@@ -362,7 +362,7 @@ namespace Persistence
 
                 entity.HasIndex(e => e.AdministrativnaJedinicaId, "IX_Udruzenje_AdministrativnaJedinicaID");
 
-                entity.HasIndex(e => e.NadredjenoUdruzenjeId, "IX_Udruzenje_NadredjenjoUdruzenjeID");
+                entity.HasIndex(e => e.NadredjenoUdruzenjeId, "IX_Udruzenje_NadredjenoUdruzenjeID");
 
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
@@ -374,7 +374,7 @@ namespace Persistence
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Udruzenje_AdministrativnaJedinica");
 
-                entity.HasOne(d => d.NadredjenoUdruzenje).WithMany(p => p.InverseNadredjenoUdruzenje)
+                entity.HasOne(d => d.NadredjenjoUdruzenje).WithMany(p => p.InverseNadredjenjoUdruzenje)
                     .HasForeignKey(d => d.NadredjenoUdruzenjeId)
                     .HasConstraintName("FK_Udruzenje_Udruzenje");
             });
