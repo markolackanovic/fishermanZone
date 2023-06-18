@@ -1,6 +1,8 @@
-﻿using Application.Common.Infrastructure.Settings;
+﻿using Application.Authentification;
+using Application.Common.Infrastructure.Settings;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -90,7 +92,11 @@ namespace WebApi
                     ValidateAudience = false
                 };
             });
-         
+
+            services.AddAuthorization();
+            services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+
             return services;
         }
     }

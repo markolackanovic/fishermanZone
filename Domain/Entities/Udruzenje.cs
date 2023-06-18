@@ -7,7 +7,7 @@ public partial class Udruzenje
 {
     public int UdruzenjeId { get; set; }
 
-    public int? NadredjenjoUdruzenjeId { get; set; }
+    public int? NadredjenoUdruzenjeId { get; set; }
 
     public string Naziv { get; set; } = null!;
 
@@ -25,9 +25,11 @@ public partial class Udruzenje
 
     public virtual ICollection<Dokument> Dokuments { get; set; } = new List<Dokument>();
 
-    public virtual ICollection<Udruzenje> InverseNadredjenjoUdruzenje { get; set; } = new List<Udruzenje>();
+    public virtual ICollection<Udruzenje> InverseNadredjenoUdruzenje { get; set; } = new List<Udruzenje>();
 
-    public virtual Udruzenje? NadredjenjoUdruzenje { get; set; }
+    public virtual ICollection<Korisnik> Korisniks { get; set; } = new List<Korisnik>();
+
+    public virtual Udruzenje? NadredjenoUdruzenje { get; set; }
 
     public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; set; } = new List<ObjavaKorisnika>();
 

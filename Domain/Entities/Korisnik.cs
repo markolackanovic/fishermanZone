@@ -30,4 +30,8 @@ public partial class Korisnik
     public virtual ICollection<Komentar> Komentars { get; set; } = new List<Komentar>();
 
     public virtual ICollection<ObjavaKorisnika> ObjavaKorisnikas { get; set; } = new List<ObjavaKorisnika>();
+
+    public virtual Udruzenje? Udruzenje { get; set; }
+
+    public virtual UlogaKorisnika? UlogaKorisnika { get; set; }
 }

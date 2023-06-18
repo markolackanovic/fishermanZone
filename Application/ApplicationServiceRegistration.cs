@@ -1,4 +1,6 @@
-﻿using Application.Common.Behaviours;
+﻿using Application.Authentification;
+using Application.BusinessLogic.Korisnik.Commands.Login;
+using Application.Common.Behaviours;
 using Application.Shared.Services.Create;
 using Application.Shared.Services.Delete;
 using Application.Shared.Services.Queries.GetAll;
@@ -6,6 +8,7 @@ using Application.Shared.Services.Queries.GetByID;
 using Application.Shared.Services.Update;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -26,6 +29,12 @@ namespace Application
             services.AddScoped(typeof(UpdateCommandHandler<,>),typeof(UpdateCommandHandler<,>));
             services.AddScoped(typeof(GetByIdQueryHandler<,,>),typeof(GetByIdQueryHandler<,,>));
             services.AddScoped(typeof(GetAllQueryHandler<,,>),typeof(GetAllQueryHandler<,,>));
+            services.AddScoped(typeof(LoginCommandHandler),typeof(LoginCommandHandler));
+            services.AddScoped<IJwtProvider, JwtProvider>();
+            services.AddScoped<IPermissionService, PermissionService>();
+            
+
+
             return services;
         }
     }

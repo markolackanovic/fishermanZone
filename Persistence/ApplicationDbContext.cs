@@ -30,6 +30,7 @@ namespace Persistence
         {
         }
 
+
         public virtual DbSet<AdministrativnaJedinica> AdministrativnaJedinicas { get; set; }
 
         public virtual DbSet<Datoteka> Datotekas { get; set; }
@@ -48,6 +49,10 @@ namespace Persistence
 
         public virtual DbSet<ObjaveUdruzenja> ObjaveUdruzenjas { get; set; }
 
+        public virtual DbSet<Ovlascenje> Ovlascenjes { get; set; }
+
+        public virtual DbSet<OvlascenjeUloge> OvlascenjeUloges { get; set; }
+
         public virtual DbSet<TipAdministrativneJedinice> TipAdministrativneJedinices { get; set; }
 
         public virtual DbSet<TipClana> TipClanas { get; set; }
@@ -60,12 +65,32 @@ namespace Persistence
 
         public virtual DbSet<UlogaKorisnika> UlogaKorisnikas { get; set; }
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//            => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;User ID=postgres;Password=Pa$$w0rd;Database=BIHFishing;Trust Server Certificate=false;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder
+                .HasPostgresExtension("btree_gin")
+                .HasPostgresExtension("btree_gist")
+                .HasPostgresExtension("citext")
+                .HasPostgresExtension("cube")
+                .HasPostgresExtension("dblink")
+                .HasPostgresExtension("dict_int")
+                .HasPostgresExtension("dict_xsyn")
+                .HasPostgresExtension("earthdistance")
+                .HasPostgresExtension("fuzzystrmatch")
+                .HasPostgresExtension("hstore")
+                .HasPostgresExtension("intarray")
+                .HasPostgresExtension("ltree")
+                .HasPostgresExtension("pg_stat_statements")
+                .HasPostgresExtension("pg_trgm")
+                .HasPostgresExtension("pgcrypto")
+                .HasPostgresExtension("pgrowlocks")
+                .HasPostgresExtension("pgstattuple")
+                .HasPostgresExtension("tablefunc")
+                .HasPostgresExtension("unaccent")
+                .HasPostgresExtension("uuid-ossp")
+                .HasPostgresExtension("xml2");
+
             modelBuilder.Entity<AdministrativnaJedinica>(entity =>
             {
                 entity.ToTable("AdministrativnaJedinica");
@@ -185,6 +210,14 @@ namespace Persistence
                 entity.Property(e => e.ProfilnaSlika).HasMaxLength(100);
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.UlogaKorisnikaId).HasColumnName("UlogaKorisnikaID");
+
+                entity.HasOne(d => d.Udruzenje).WithMany(p => p.Korisniks)
+                    .HasForeignKey(d => d.UdruzenjeId)
+                    .HasConstraintName("fk_udruzenje");
+
+                entity.HasOne(d => d.UlogaKorisnika).WithMany(p => p.Korisniks)
+                    .HasForeignKey(d => d.UlogaKorisnikaId)
+                    .HasConstraintName("fk_ulogaKorisnika");
             });
 
             modelBuilder.Entity<Objava>(entity =>
@@ -258,6 +291,39 @@ namespace Persistence
                     .HasConstraintName("FK_ObjaveUdruzenja_Udruzenje");
             });
 
+            modelBuilder.Entity<Ovlascenje>(entity =>
+            {
+                entity.HasKey(e => e.OvlascenjeId).HasName("Ovlascenje_pkey");
+
+                entity.ToTable("Ovlascenje");
+
+                entity.Property(e => e.OvlascenjeId).UseIdentityAlwaysColumn();
+                entity.Property(e => e.Naziv).HasColumnType("character varying");
+            });
+
+            modelBuilder.Entity<OvlascenjeUloge>(entity =>
+            {
+                entity.HasKey(e => e.OvlascenjeUlogeId).HasName("OvlascenjeUloge_pkey");
+
+                entity.ToTable("OvlascenjeUloge");
+
+                entity.Property(e => e.OvlascenjeUlogeId)
+                    .UseIdentityAlwaysColumn()
+                    .HasColumnName("OvlascenjeUlogeID");
+                entity.Property(e => e.OvlascenjeId).HasColumnName("OvlascenjeID");
+                entity.Property(e => e.UlogaId).HasColumnName("UlogaID");
+
+                entity.HasOne(d => d.Ovlascenje).WithMany(p => p.OvlascenjeUloges)
+                    .HasForeignKey(d => d.OvlascenjeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_ovlascenje");
+
+                entity.HasOne(d => d.Uloga).WithMany(p => p.OvlascenjeUloges)
+                    .HasForeignKey(d => d.UlogaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_uloga");
+            });
+
             modelBuilder.Entity<TipAdministrativneJedinice>(entity =>
             {
                 entity.ToTable("TipAdministrativneJedinice");
@@ -296,20 +362,20 @@ namespace Persistence
 
                 entity.HasIndex(e => e.AdministrativnaJedinicaId, "IX_Udruzenje_AdministrativnaJedinicaID");
 
-                entity.HasIndex(e => e.NadredjenjoUdruzenjeId, "IX_Udruzenje_NadredjenjoUdruzenjeID");
+                entity.HasIndex(e => e.NadredjenoUdruzenjeId, "IX_Udruzenje_NadredjenjoUdruzenjeID");
 
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
                 entity.Property(e => e.LogoPath).HasMaxLength(500);
-                entity.Property(e => e.NadredjenjoUdruzenjeId).HasColumnName("NadredjenjoUdruzenjeID");
+                entity.Property(e => e.NadredjenoUdruzenjeId).HasColumnName("NadredjenoUdruzenjeID");
 
                 entity.HasOne(d => d.AdministrativnaJedinica).WithMany(p => p.Udruzenjes)
                     .HasForeignKey(d => d.AdministrativnaJedinicaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Udruzenje_AdministrativnaJedinica");
 
-                entity.HasOne(d => d.NadredjenjoUdruzenje).WithMany(p => p.InverseNadredjenjoUdruzenje)
-                    .HasForeignKey(d => d.NadredjenjoUdruzenjeId)
+                entity.HasOne(d => d.NadredjenoUdruzenje).WithMany(p => p.InverseNadredjenoUdruzenje)
+                    .HasForeignKey(d => d.NadredjenoUdruzenjeId)
                     .HasConstraintName("FK_Udruzenje_Udruzenje");
             });
 
