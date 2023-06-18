@@ -374,7 +374,7 @@ namespace Persistence
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Udruzenje_AdministrativnaJedinica");
 
-                entity.HasOne(d => d.NadredjenjoUdruzenje).WithMany(p => p.InverseNadredjenjoUdruzenje)
+                entity.HasOne(d => d.NadredjenoUdruzenje).WithMany(p => p.InverseNadredjenoUdruzenje)
                     .HasForeignKey(d => d.NadredjenoUdruzenjeId)
                     .HasConstraintName("FK_Udruzenje_Udruzenje");
             });

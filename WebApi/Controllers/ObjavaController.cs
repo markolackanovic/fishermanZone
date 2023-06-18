@@ -15,7 +15,6 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ObjavaController : ApiBaseController
     {
         public ObjavaController(IOptions<AppSettings> appSettings) : base(appSettings)
@@ -25,7 +24,6 @@ namespace WebApi.Controllers
         [AllowAnonymous]
         [HttpPost]
         [SwaggerOperation(Tags = new[] { "Objava" })]
-        [HasPermission(Permission.ReadMember)]
         public async Task<ActionResult<List<int>>> Add(CreateObjavaCommand request)
         {
             return Ok(await Mediator.Send(request));

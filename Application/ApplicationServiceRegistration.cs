@@ -1,5 +1,4 @@
 ﻿using Application.Authentification;
-using Application.BusinessLogic.Korisnik.Commands.Login;
 using Application.Common.Behaviours;
 using Application.Shared.Services.Create;
 using Application.Shared.Services.Delete;
@@ -29,7 +28,6 @@ namespace Application
             services.AddScoped(typeof(UpdateCommandHandler<,>),typeof(UpdateCommandHandler<,>));
             services.AddScoped(typeof(GetByIdQueryHandler<,,>),typeof(GetByIdQueryHandler<,,>));
             services.AddScoped(typeof(GetAllQueryHandler<,,>),typeof(GetAllQueryHandler<,,>));
-            services.AddScoped(typeof(LoginCommandHandler),typeof(LoginCommandHandler));
             services.AddScoped<IJwtProvider, JwtProvider>();
             services.AddScoped<IPermissionService, PermissionService>();
             

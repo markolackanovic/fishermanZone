@@ -20,14 +20,7 @@ namespace WebApi.Controllers.Login
         [SwaggerOperation(Tags = new[] { "Login" })]
         public async Task<ActionResult<LoggedUserViewModel>> Login(GetKorisnikByUsernameAndPasswordQuery data)
         {
-            var loggedUser = await Mediator.Send(data);
-
-            if (loggedUser.KorisnikId > 0)
-            {
-                loggedUser.Token = CreateToken(loggedUser.KorisnikId, loggedUser.UlogaKorisnikaId, loggedUser.UdruzenjeId.GetValueOrDefault());
-            }
-
-            return Ok(loggedUser);
+            return Ok(await Mediator.Send(data));
         }
     }
 }

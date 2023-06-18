@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword;
+using Application.Common.Infrastructure.Settings;
+using Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -11,22 +13,22 @@ namespace Application.Authentification
 {
     public class JwtProvider : IJwtProvider
     {
-        private readonly JwtOptions _options;
+        private readonly AppSettings _options;
         private readonly IPermissionService _permissionService;
         private readonly IConfiguration _configuration;
-        public JwtProvider(IOptions<JwtOptions> options, IPermissionService permissionService, IConfiguration configuration)
+        public JwtProvider(IOptions<AppSettings> options, IPermissionService permissionService, IConfiguration configuration)
         {
             _options = options.Value;
             _permissionService = permissionService;
             _configuration = configuration;
         }
 
-        public async Task<string> GenerateTokenAsync(Korisnik korisnik)
+        public async Task<string> GenerateTokenAsync(LoggedUserViewModel korisnik)
         {
-            var claims = new List<Claim> { 
-                new (JwtRegisteredClaimNames.Sub,korisnik.KorisnikId.ToString()),
-                new (JwtRegisteredClaimNames.Sub,korisnik.KorisnickoIme),
-                new (JwtRegisteredClaimNames.Sub,korisnik.UlogaKorisnikaId.ToString())
+            var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, korisnik.KorisnikId.ToString()),
+                    new Claim(CustomClaims.Role, korisnik.UlogaKorisnikaId.ToString()),
+                    new Claim(CustomClaims.Association, korisnik.UdruzenjeId.ToString())
             };
 
             HashSet<string> permissions = await _permissionService.GetPermissionsAsync(korisnik.KorisnikId);
@@ -37,19 +39,17 @@ namespace Application.Authentification
                 claims.Add(new(CustomClaims.Permissions, permission));
             }
 
-            var signingCredidential = new SigningCredentials(
-                new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration.GetSection("Secret").Value.ToString())),
-                SecurityAlgorithms.HmacSha256);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_options.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(Convert.ToInt16(_options.TokenDurationDays)),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
 
-            var token = new JwtSecurityToken(
-                _options.Issuer,
-                _options.Audience,
-                claims,
-                null,
-                DateTime.UtcNow.AddDays(30),
-                signingCredidential);
-            var tokenValue =  new JwtSecurityTokenHandler().WriteToken(token);
-            return tokenValue;
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
 }

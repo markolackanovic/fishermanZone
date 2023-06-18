@@ -9,5 +9,7 @@ namespace Application.Authentification
     public static class CustomClaims
     {
         public const string Permissions = "permissions";
+        public const string Role = "ulogaKorisnikaId";
+        public const string Association = "udruzenjeId";
     }
 }

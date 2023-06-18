@@ -1,4 +1,5 @@
-﻿using Application.Common.Exceptions;
+﻿using Application.Authentification;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Security;
 using AutoMapper;
@@ -19,11 +20,13 @@ namespace Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IJwtProvider _jwtProvider;
 
-        public GetKorisnikByUsernameAndPasswordQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetKorisnikByUsernameAndPasswordQueryHandler(IApplicationDbContext context, IMapper mapper, IJwtProvider jwtProvider)
         {
             _context = context;
             _mapper = mapper;
+            _jwtProvider = jwtProvider;
         }
 
         public async Task<LoggedUserViewModel> Handle(GetKorisnikByUsernameAndPasswordQuery request, CancellationToken cancellationToken)
@@ -46,6 +49,7 @@ namespace Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword
                 }
             }
 
+            loggedInUser.Token = await _jwtProvider.GenerateTokenAsync(loggedInUser);
             loggedInUser.Lozinka = string.Empty;
 
             return loggedInUser;
