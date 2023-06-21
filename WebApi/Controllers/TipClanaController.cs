@@ -3,6 +3,7 @@ using Application.BusinessLogic.TipAdministrativneJedinice.Queries;
 using Application.BusinessLogic.TipClana.Commands.CreateTipClanaCommand;
 using Application.BusinessLogic.TipClana.Commands.DeleteTipClanaCommand;
 using Application.BusinessLogic.TipClana.Commands.UpdateTipClanaCommand;
+using Application.BusinessLogic.TipObjave.Queries.GetTipObjaveById;
 using Application.Common.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,13 @@ namespace WebApi.Controllers
 
         public async Task<ActionResult<TipClanaViewModel>> GetTipClanaById(int id)
         {
-            return Ok(await Mediator.Send(new GetTipClanaByIdQuery { Id = id }));
+            var result = await Mediator.Send(new GetTipClanaByIdQuery { Id = id });
+
+            if (result.IsError)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok(result.Result);
         }
     }
 }

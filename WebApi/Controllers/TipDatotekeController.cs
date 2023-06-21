@@ -3,6 +3,7 @@ using Application.BusinessLogic.TipDatoteke.Commands.DeleteTipDatotekeCommand;
 using Application.BusinessLogic.TipDatoteke.Commands.UpdateTipDatotekeCommand;
 using Application.BusinessLogic.TipDatoteke.Queries.GetTipDatotekeById;
 using Application.BusinessLogic.TipDatoteke.Queries.SearchTipDatoteke;
+using Application.BusinessLogic.TipObjave.Queries.GetTipObjaveById;
 using Application.Common.Infrastructure.Settings;
 using Application.Common.Models.Respones;
 using Microsoft.AspNetCore.Authorization;
@@ -46,7 +47,13 @@ namespace WebApi.Controllers
 
         public async Task<ActionResult<TipDatotekeViewModel>> GetTipDatotekeById(int id)
         {
-            return Ok(await Mediator.Send(new GetTipDatotekeByIdQuery { Id = id }));
+            var result = await Mediator.Send(new GetTipDatotekeByIdQuery { Id = id });
+
+            if (result.IsError)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok(result.Result);
         }
         [AllowAnonymous]
         [HttpPost]

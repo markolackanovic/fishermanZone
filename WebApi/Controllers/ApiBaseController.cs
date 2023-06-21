@@ -1,4 +1,5 @@
 ﻿using Application.Common.Infrastructure.Settings;
+using Application.Common.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace WebApi.Controllers
     {
         public readonly IOptions<AppSettings> _appSettings;
 
+
         private ISender _mediator = null!;
 
         protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
@@ -24,6 +26,7 @@ namespace WebApi.Controllers
         public ApiBaseController(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings;
+
         }
 
         protected string CreateToken(int korisnikId, int ulogaKorisnikaId,  int udruzenjeId)
