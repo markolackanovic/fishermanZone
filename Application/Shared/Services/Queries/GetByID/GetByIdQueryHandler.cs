@@ -1,6 +1,7 @@
 ﻿using Application.Common.Exceptions;
 using Application.Common.Helpers;
 using Application.Common.Interfaces;
+using Application.Shared.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Shared.Services.Queries.GetByID
 {
-    public class GetByIdQueryHandler<TViewModel, TQuery, TEntity> : IRequestHandler<TQuery, TViewModel>
+    public class GetByIdQueryHandler<TViewModel, TQuery, TEntity> : IRequestHandler<TQuery, ServiceResult<TViewModel>>
         where TViewModel : class
         where TQuery : GetByIdQuery<TViewModel>
         where TEntity : class
@@ -23,7 +24,7 @@ namespace Application.Shared.Services.Queries.GetByID
             _mapper = mapper;
         }
 
-        public virtual async Task<TViewModel> Handle(TQuery request, CancellationToken cancellationToken)
+        public virtual async Task<ServiceResult<TViewModel>> Handle(TQuery request, CancellationToken cancellationToken)
         {
             var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey()
                 .Properties
@@ -31,7 +32,10 @@ namespace Application.Shared.Services.Queries.GetByID
                 .SingleOrDefault();
             if (keyName == null)
             {
-                throw new ArgumentNullException(nameof(keyName));
+                return new ServiceResult<TViewModel> {
+                    IsError = true,
+                    ErrorMessage = "Primary key cannot be null!"
+                };
             }
 
             var result = await _context.Set<TEntity>()
@@ -40,10 +44,18 @@ namespace Application.Shared.Services.Queries.GetByID
                 .SingleOrDefaultAsync();
             if(result == null)
             {
-                throw new NotFoundException(typeof(TEntity).Name, request.Id);
+                return new ServiceResult<TViewModel>
+                {
+                    IsError = true,
+                    ErrorMessage = "Entity not found!"
+                };
             }
 
-            return result;
+            return new ServiceResult<TViewModel>
+            {
+                IsError = false,
+                Result = result
+            };
         }
     }
 }

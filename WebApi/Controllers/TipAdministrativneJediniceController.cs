@@ -4,6 +4,7 @@ using Application.BusinessLogic.TipAdministrativneJedinice.Commands.UpdateTipAdm
 using Application.BusinessLogic.TipAdministrativneJedinice.Queries.GetAllQuery;
 using Application.BusinessLogic.TipAdministrativneJedinice.Queries.GetTipAdministrativneJediniceById;
 using Application.BusinessLogic.TipAdministrativneJedinice.Queries.SearchTipAdministrativneJedinice;
+using Application.BusinessLogic.TipObjave.Queries.GetTipObjaveById;
 using Application.Common.Infrastructure.Settings;
 using Application.Common.Models.Respones;
 using Microsoft.AspNetCore.Authorization;
@@ -47,7 +48,13 @@ namespace WebApi.Controllers
 
         public async Task<ActionResult<TipAdministrativneJediniceViewModel>> GetTipAdministrativneJediniceById(int id)
         {
-            return Ok(await Mediator.Send(new GetTipAdministrativneJediniceByIdQuery { Id = id }));
+            var result = await Mediator.Send(new GetTipAdministrativneJediniceByIdQuery { Id = id });
+
+            if (result.IsError)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok(result.Result);
         }
         [AllowAnonymous]
         [HttpPost]

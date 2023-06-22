@@ -46,7 +46,14 @@ namespace WebApi.Controllers
 
         public async Task<ActionResult<TipObjaveViewModel>> GetTipObjaveById(int id)
         {
-            return Ok(await Mediator.Send(new GetTipObjaveByIdQuery { Id = id }));
+
+            var result =  await Mediator.Send(new GetTipObjaveByIdQuery { Id = id });
+
+            if(result.IsError)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok(result.Result);
         }
         [AllowAnonymous]
         [HttpPost]
