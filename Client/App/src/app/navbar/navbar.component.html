@@ -1,0 +1,82 @@
+<div class="flex flex-wrap">
+  <div class="w-full">
+    <nav class="relative flex flex-wrap items-center justify-between navbar-expand-lg bg-teal-500">
+      <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div class="w-full relative flex justify-between lg:w-auto px-4 lg:block lg:justify-start">
+          <a class="text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap text-white" [routerLink]="['/home']">
+            FishermanZone
+          </a>
+          <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" (click)="toggleNavbar()">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <div class="lg:flex lg:flex-grow items-center">
+          <ul class="flex flex-col items-center lg:flex-row list-none lg:ml-auto">
+            <li class="nav-item">
+              <a class="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75" [routerLink]="['/home']">
+                Početna
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75" [routerLink]="['/super-admin/udruzenja/list']">
+                Udruženja
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:flex lg:flex-grow items-center">
+          <ul class="flex flex-col items-center lg:flex-row list-none lg:ml-auto">
+            <li *ngIf="currentUser == null || currentUser.korisnikId == 0" class="nav-item">
+              <div class="flex flex-wrap items-center">
+                <i class="fas fa-user text-sm leading-lg text-white hover:opacity-75"></i>
+                <a class="px-2 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75" [routerLink]="['/login']">
+                  Prijava
+                </a>
+              </div>
+            </li>
+            <li *ngIf="currentUser?.korisnikId > 0" class="nav-item">
+              <a class="text-blueGray-500 block"
+                 href="#"
+                 (click)="toggleDropdown($event)"
+                 #btnDropdownRef>
+                <div class="items-center flex text-white hover:opacity-75">
+                  {{ currentUser?.ime }} {{ currentUser?.prezime }}
+                  <span class="w-10 h-10 ml-2 text-sm m-x-1 text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
+                    <img alt="..."
+                         class="w-full rounded-full align-middle border-none shadow-lg"
+                         src="../../assets/images/profile-img.jpg" />
+                  </span>
+                </div>
+              </a>
+              <div class="min-w-48 z-50" #popoverDropdownRef>
+                <div class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1 min-w-48"
+                     [ngClass]="dropdownPopoverShow ? 'block' : 'hidden'">
+                  <a href="#"
+                     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+                    Action
+                  </a>
+                  <a href="#"
+                     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+                    Another action
+                  </a>
+                  <a href="#"
+                     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+                    Something else here
+                  </a>
+                  <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
+                  <a href="#" (click)="logout()"
+                     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+                    Odjavi se
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>

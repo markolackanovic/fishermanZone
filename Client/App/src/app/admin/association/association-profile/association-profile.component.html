@@ -1,0 +1,131 @@
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-6/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Ribolovački savez
+    </h6>
+
+    <h4 class="text-l font-bold leading-normal mt-0 mb-2 text-blueGray-800">
+      Ribolovački savez Republike Srpske
+    </h4>
+  </div>
+
+  <div class="w-full lg:w-6/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Naziv udruženja
+    </h6>
+
+    <h4 class="text-l font-bold leading-normal mt-0 mb-2 text-blueGray-800">
+      Ribolovačko udruženje "Šaran"
+    </h4>
+  </div>
+</div>
+
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-6/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Mjesto udruženja
+    </h6>
+
+    <h4 class="text-l font-bold leading-normal mt-0 mb-2 text-blueGray-800">
+      Brčko
+    </h4>
+  </div>
+
+  <div class="w-full lg:w-6/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Adresa udruženja
+    </h6>
+
+    <h4 class="text-l font-bold leading-normal mt-0 mb-2 text-blueGray-800">
+      Trg Mladih 5
+    </h4>
+  </div>
+</div>
+
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-6/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Kontakt telefon
+    </h6>
+
+    <h4 class="text-l font-bold leading-normal mt-0 mb-2 text-blueGray-800">
+      065/111-222
+    </h4>
+  </div>
+
+  <div class="w-full lg:w-6/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Email adresa
+    </h6>
+
+    <h4 class="text-l font-bold leading-normal mt-0 mb-2 text-blueGray-800">
+      ru_saran_brcko@gmail.com
+    </h4>
+  </div>
+</div>
+
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-12/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Kratak opis
+    </h6>
+
+    <h4 class="text-l font-bold leading-normal mt-0 mb-2 text-blueGray-800">
+      I will be the leader of a company that ends up being worth billions
+      of dollars, because I got the answers. I understand culture. I am
+      the nucleus. I think that’s a responsibility that I have, to push
+      possibilities, to show people, this is the level that things could
+      be at.
+    </h4>
+  </div>
+</div>
+
+<div class="flex content-center items-center justify-center h-full">
+
+  <button type="button" id="openAssociationEditModalBtn"
+          class="" (click)="openAssociationEditModal()"
+          role="button">
+    Uredi profile podatke
+  </button>
+</div>
+
+
+<div *ngIf="showModal" id="associationProfileEditModal" class="overflow-x-hidden fixed z-50 top-0 md:inset-0 h-modal max-w-4xl">
+  <div class="relative w-auto my-6 mx-auto max-w-4xl">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+          Modal Title
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="openAssociationEditModal()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="relative p-6 flex-auto">
+        <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+          I always felt like I could do anything. That’s the main
+          thing people are controlled by! Thoughts- their perception
+          of themselves! They're slowed down by their perception of
+          themselves. If you're taught you can’t do anything, you
+          won’t do anything. I was taught I could do everything.
+        </p>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="openAssociationEditModal()">
+          Close
+        </button>
+        <button class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="openAssociationEditModal()">
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black flex"></div>
+

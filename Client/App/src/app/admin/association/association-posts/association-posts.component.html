@@ -1,0 +1,287 @@
+<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+  <div class="flex flew-wrap mt-3">
+    <div class="w-full lg:w-6/12 px-2">
+      <label class="block text-blueGray-600 text-xs font-bold mb-2">Naslov objave</label>
+      <input type="text" autocomplete="off" name="ime" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+    </div>
+
+    <div class="w-full lg:w-6/12 px-2">
+      <label class="block text-blueGray-600 text-xs font-bold mb-2">Vrsta objave</label>
+      <select autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" name="administrativnaJedinicaId">
+        <option [value]="0">-- Sve --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap mb-3">
+    <div class="w-full lg:w-6/12 px-2">
+      <label class="block text-blueGray-600 text-xs font-bold mb-2">Datum kreiranja od</label>
+      <input type="text" autocomplete="off" name="ime" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+    </div>
+
+    <div class="w-full lg:w-6/12 px-2">
+      <label class="block text-blueGray-600 text-xs font-bold mb-2">Datum kreiranja do</label>
+      <input type="text" autocomplete="off" name="ime" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+    </div>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between mb-1">
+    <div class="px-2">
+      <button class="bg-teal-500 text-white font-bold uppercase text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 ease-linear transition-all duration-150" type="button">
+        Pretraži
+      </button>
+
+      <button class="bg-white text-teal-500 font-bold uppercase text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150" type="button">
+        Poništi pretragu
+      </button>
+    </div>
+
+    <div class="px-2">
+      <button class="bg-teal-500 text-white font-bold uppercase text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150" type="button">
+        Dodaj objavu
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="flex flex-wrap items-center justify-between">
+        <a [routerLink]="['./objava/id']" class="font-semibold text-base text-blueGray-700 flex-1 hover-underline">Obavještenje o početku ribolovne sezone</a>
+        <span class="font-semibold text-base text-blueGray-700 mr-16">Obavještenje</span>
+        <span class="font-semibold text-base text-blueGray-700 mr-16">admin</span>
+        <span class="font-semibold text-base text-blueGray-700">16.06.2023. 15:22</span>
+      </div>
+    </div>
+
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <p class="text-sm leading-normal mt-0 mb-2 text-blueGray-800">
+        I will be the leader of a company that ends up being worth billions
+        of dollars, because I got the answers. I understand culture. I am
+        the nucleus. I think that’s a responsibility that I have, to push
+        possibilities, to show people, this is the level that things could
+        be at.
+      </p>
+
+      <div class="flex flex-wrap">
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+        <div class="px-2 mb-2">
+          <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center justify-between">
+      <a [routerLink]="['./objava/id']" class="font-semibold text-base text-blueGray-700 flex-1 hover-underline">Obavještenje o početku ribolovne sezone</a>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">Obavještenje</span>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">admin</span>
+      <span class="font-semibold text-base text-blueGray-700">16.06.2023. 15:22</span>
+    </div>
+  </div>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <p class="text-sm leading-normal mt-0 mb-2 text-blueGray-800">
+      I will be the leader of a company that ends up being worth billions
+      of dollars, because I got the answers. I understand culture. I am
+      the nucleus. I think that’s a responsibility that I have, to push
+      possibilities, to show people, this is the level that things could
+      be at.
+    </p>
+  </div>
+</div>
+
+<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center justify-between">
+      <a [routerLink]="['./objava/id']" class="font-semibold text-base text-blueGray-700 flex-1 hover-underline">Obavještenje o početku ribolovne sezone</a>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">Obavještenje</span>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">admin</span>
+      <span class="font-semibold text-base text-blueGray-700">16.06.2023. 15:22</span>
+    </div>
+  </div>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <p class="text-sm leading-normal mt-0 mb-2 text-blueGray-800">
+      I will be the leader of a company that ends up being worth billions
+      of dollars, because I got the answers. I understand culture. I am
+      the nucleus. I think that’s a responsibility that I have, to push
+      possibilities, to show people, this is the level that things could
+      be at.
+    </p>
+  </div>
+</div>
+
+<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center justify-between">
+      <a [routerLink]="['./objava/id']" class="font-semibold text-base text-blueGray-700 flex-1 hover-underline">Obavještenje o početku ribolovne sezone</a>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">Obavještenje</span>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">admin</span>
+      <span class="font-semibold text-base text-blueGray-700">16.06.2023. 15:22</span>
+    </div>
+  </div>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <p class="text-sm leading-normal mt-0 mb-2 text-blueGray-800">
+      I will be the leader of a company that ends up being worth billions
+      of dollars, because I got the answers. I understand culture. I am
+      the nucleus. I think that’s a responsibility that I have, to push
+      possibilities, to show people, this is the level that things could
+      be at.
+    </p>
+  </div>
+</div>
+
+<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center justify-between">
+      <a [routerLink]="['./objava/id']" class="font-semibold text-base text-blueGray-700 flex-1 hover-underline">Obavještenje o početku ribolovne sezone</a>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">Obavještenje</span>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">admin</span>
+      <span class="font-semibold text-base text-blueGray-700">16.06.2023. 15:22</span>
+    </div>
+  </div>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <p class="text-sm leading-normal mt-0 mb-2 text-blueGray-800">
+      I will be the leader of a company that ends up being worth billions
+      of dollars, because I got the answers. I understand culture. I am
+      the nucleus. I think that’s a responsibility that I have, to push
+      possibilities, to show people, this is the level that things could
+      be at.
+    </p>
+  </div>
+</div>
+
+<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center justify-between">
+      <a [routerLink]="['./objava/id']" class="font-semibold text-base text-blueGray-700 flex-1 hover-underline">Obavještenje o početku ribolovne sezone</a>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">Obavještenje</span>
+      <span class="font-semibold text-base text-blueGray-700 mr-16">admin</span>
+      <span class="font-semibold text-base text-blueGray-700">16.06.2023. 15:22</span>
+    </div>
+  </div>
+
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <p class="text-sm leading-normal mt-0 mb-2 text-blueGray-800">
+      I will be the leader of a company that ends up being worth billions
+      of dollars, because I got the answers. I understand culture. I am
+      the nucleus. I think that’s a responsibility that I have, to push
+      possibilities, to show people, this is the level that things could
+      be at.
+    </p>
+
+    <div class="flex flex-wrap">
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+      <div class="px-2 mb-2">
+        <img style="width:120px" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="py-2">
+  <nav class="block">
+    <ul class="flex pl-0 rounded list-none flex-wrap">
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          <i class="fas fa-chevron-left -ml-px"></i>
+          <i class="fas fa-chevron-left -ml-px"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          <i class="fas fa-chevron-left -ml-px"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 text-white bg-teal-500">
+          1
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          2
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          3
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          4
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          5
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          <i class="fas fa-chevron-right -mr-px"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#pablo" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mr-1 ml-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-teal-500 bg-white text-teal-500">
+          <i class="fas fa-chevron-right -mr-px"></i>
+          <i class="fas fa-chevron-right -mr-px"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

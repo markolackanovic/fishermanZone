@@ -1,12 +1,9 @@
 export class LoggedInUserModel {
-  id: number = 0;
-  username: string = "";
-  password: string = "";
-  firstName: string = "";
-  lastName: string = "";
-  firstNameCyr: string = "";
-  lastNameCyr: string = "";
-  isLoggedIn: boolean = false;
+  korisnikId: number = 0;
+  korisnickoIme: string = "";
+  ime: string = "";
+  prezime: string = "";
   token: string = "";
-  isVerificationRequired: string = "";
+  udruzenjeId: number = 0
+  ulogaKorisnikaId: number = 0;
 }
