@@ -16,12 +16,15 @@ public partial class Udruzenje
     public string? Adresa { get; set; }
 
     public string? Opis { get; set; }
+    public int? LogoDatotekaId { get; set; }
+    public string KontaktTelefon { get; set; } = string.Empty;
+    public string KontaktEmail { get; set; } = string.Empty;
 
-    public string? LogoPath { get; set; }
 
     public bool Aktivno { get; set; }
 
     public virtual AdministrativnaJedinica AdministrativnaJedinica { get; set; } = null!;
+    public virtual Datoteka LogoDatoteka { get; set; } = null!;
 
     public virtual ICollection<Dokument> Dokuments { get; set; } = new List<Dokument>();
 

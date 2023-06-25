@@ -18,6 +18,8 @@ export let CONFIG = {
     login: BASECONFIG.apiUrl.url + 'Login/Login/',
     udruzenje: {
       add: BASECONFIG.apiUrl.url + 'Udruzenje/Add/',
+      update: BASECONFIG.apiUrl.url + 'Udruzenje/Update/',
+      getById: BASECONFIG.apiUrl.url + 'Udruzenje/GetById/'
     },
     korisnik: {
       add: BASECONFIG.apiUrl.url + 'Korisnik/Add/',

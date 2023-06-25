@@ -174,8 +174,7 @@ namespace Domain.Migrations
                     Naziv = table.Column<string>(type: "text", nullable: false),
                     AdministrativnaJedinicaID = table.Column<int>(type: "integer", nullable: false),
                     Adresa = table.Column<string>(type: "text", nullable: true),
-                    Opis = table.Column<string>(type: "text", nullable: true),
-                    LogoPath = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true)
+                    Opis = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

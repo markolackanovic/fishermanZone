@@ -1174,7 +1174,6 @@ select {
 }
 
 .not-sr-only {
-  //position: static;
   width: auto;
   height: auto;
   padding: 0;
@@ -1229,8 +1228,12 @@ select {
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 
+.bg-gray-transparent {
+  background-color: rgb(216 216 216 / 80%);
+}
+
 .bg-lightGray {
-  background-color: #f8f8f8;
+  background-color: #f3f3f3;
 }
 
 .bg-pink-500 {
@@ -2495,6 +2498,23 @@ select {
   min-width: 140px;
 }
 
+.max-w-40-p {
+  max-width: 40%;
+}
+
+.max-w-50-p {
+  max-width: 50%;
+}
+
+.max-w-60-p {
+  max-width: 60%;
+}
+
+
+.max-w-70-p {
+  max-width: 70%;
+}
+
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
@@ -2880,12 +2900,9 @@ select {
   pointer-events: auto;
 }
 
-.static {
-  //position: static;
-}
-
 .fixed {
   position: fixed;
+  left:0;
 }
 
 .absolute {
@@ -4016,10 +4033,6 @@ select {
 
   .lg\:pb-64 {
     padding-bottom: 16rem;
-  }
-
-  .lg\:static {
-    //position: static;
   }
 
   .lg\:shadow-none {

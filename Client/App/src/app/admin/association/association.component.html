@@ -44,17 +44,17 @@
                           </button>
                         </div>-->
                         <div class="mr-4 p-3 text-center">
-                            <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                              35
-                            </span>
-                            <span class="text-l text-blueGray-400">objava</span>
-                          </div>
+                          <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                            {{ udruzenje.ukupnoObjava }}
+                          </span>
+                          <span class="text-l text-blueGray-400">objava</span>
+                        </div>
                       </div>
                       <div class="w-full lg:w-4/12 px-4 lg:order-1">
                         <div class="flex justify-center py-4 lg:pt-4 pt-8">
                           <div class="mr-4 p-3 text-center">
                             <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                              80
+                              {{ udruzenje.ukupnoClanova }}
                             </span>
                             <span class="text-l text-blueGray-400">članova</span>
                           </div>
@@ -69,11 +69,11 @@
                     </div>
                     <div class="text-center">
                       <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                        Ribolovačko udruženje "Šaran"
+                        {{ udruzenje.naziv }}
                       </h3>
                       <div class="text-l leading-normal mt-0 mb-2 text-blueGray-400">
                         <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-                        Trg Mladih 6, Brčko
+                        {{ udruzenje.adresa }}, {{ udruzenje.mjesto }}
                       </div>
                     </div>
                   </div>
@@ -105,20 +105,19 @@
                 <div class="px-4 py-5 flex-auto">
                   <div class="tab-content tab-space">
                     <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
-                      <app-association-profile></app-association-profile>
+                      <app-association-profile [udruzenje]="udruzenje" (dataChanged)="dataChanged()"></app-association-profile>
                     </div>
                     <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
-                     <app-association-members></app-association-members>
+                      <app-association-members></app-association-members>
                     </div>
                     <div [ngClass]="{'hidden': openTab !== 3, 'block': openTab === 3}">
-                     <app-association-posts></app-association-posts>
+                      <app-association-posts></app-association-posts>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ import { AssociationProfileComponent } from './admin/association/association-pro
 import { AssociationMembersComponent } from './admin/association/association-members/association-members.component';
 import { AssociationPostsComponent } from './admin/association/association-posts/association-posts.component';
 import { AssociationProfileEditComponent } from './admin/association/association-profile/edit/association-profile-edit.component';
+import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AssociationProfileEditComponent } from './admin/association/association
     AssociationProfileComponent,
     AssociationProfileEditComponent,
     AssociationMembersComponent,
-    AssociationPostsComponent
+    AssociationPostsComponent,
+    FileUploadComponent
   ],
   imports: [
     CoreModule,

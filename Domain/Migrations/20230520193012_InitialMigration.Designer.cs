@@ -419,10 +419,6 @@ namespace Domain.Migrations
                     b.Property<string>("Adresa")
                         .HasColumnType("text");
 
-                    b.Property<string>("LogoPath")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
                     b.Property<int?>("NadredjenoUdruzenjeId")
                         .HasColumnType("integer")
                         .HasColumnName("NadredjenoUdruzenjeID");

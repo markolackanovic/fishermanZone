@@ -8,6 +8,7 @@ public partial class TipDatoteke
     public int TipDatotekeId { get; set; }
 
     public string Naziv { get; set; } = null!;
+    public string Ekstenzija { get; set; }  = string.Empty!;
 
     public bool Aktivno { get; set; }
 

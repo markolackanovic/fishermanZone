@@ -93,7 +93,7 @@ namespace Persistence
 
             modelBuilder.Entity<AdministrativnaJedinica>(entity =>
             {
-                entity.ToTable("AdministrativnaJedinica");
+                entity.ToTable("AdministrativnaJedinica", "Sifrarnici");
 
                 entity.HasIndex(e => e.TipAdministrativneJediniceId, "IX_AdministrativnaJedinica_TipAdministrativneJediniceID");
 
@@ -196,7 +196,7 @@ namespace Persistence
 
             modelBuilder.Entity<Korisnik>(entity =>
             {
-                entity.ToTable("Korisnik");
+                entity.ToTable("Korisnik", "Admin");
 
                 entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
                 entity.Property(e => e.Adresa).HasMaxLength(500);
@@ -222,7 +222,7 @@ namespace Persistence
 
             modelBuilder.Entity<Objava>(entity =>
             {
-                entity.ToTable("Objava");
+                entity.ToTable("Objava", "Objave");
 
                 entity.HasIndex(e => e.TipObjaveId, "IX_Objava_TipObjaveID");
 
@@ -270,7 +270,7 @@ namespace Persistence
 
             modelBuilder.Entity<ObjaveUdruzenja>(entity =>
             {
-                entity.ToTable("ObjaveUdruzenja");
+                entity.ToTable("ObjaveUdruzenja", "Objave");
 
                 entity.HasIndex(e => e.ObjavaId, "IX_ObjaveUdruzenja_ObjavaID");
 
@@ -342,7 +342,7 @@ namespace Persistence
 
             modelBuilder.Entity<TipDatoteke>(entity =>
             {
-                entity.ToTable("TipDatoteke");
+                entity.ToTable("TipDatoteke", "Sifrarnici");
 
                 entity.Property(e => e.TipDatotekeId).HasColumnName("TipDatotekeID");
                 entity.Property(e => e.Naziv).HasMaxLength(100);
@@ -366,8 +366,11 @@ namespace Persistence
 
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
-                entity.Property(e => e.LogoPath).HasMaxLength(500);
                 entity.Property(e => e.NadredjenoUdruzenjeId).HasColumnName("NadredjenoUdruzenjeID");
+
+                entity.HasOne(d => d.LogoDatoteka).WithMany(p => p.Udruzenjes)
+                   .HasForeignKey(d => d.LogoDatotekaId)
+                   .HasConstraintName("FK_Udruzenje_DatotekaLogo");
 
                 entity.HasOne(d => d.AdministrativnaJedinica).WithMany(p => p.Udruzenjes)
                     .HasForeignKey(d => d.AdministrativnaJedinicaId)
