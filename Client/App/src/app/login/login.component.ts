@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CONFIG } from '../../api/config';
+import { LoggedInUserModel } from '../core/models/admin/login/logged-in-user.model';
 import { SecurityService } from '../core/security/security.service';
 import { LoginService } from './login.service';
 @Component({
@@ -12,7 +13,7 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
  
   loginModel: any = {};
-  loggedInUser: any = {};
+  loggedInUser = new LoggedInUserModel();
 
   usernameOrPasswordIncorrect: boolean = false;
 
@@ -36,10 +37,10 @@ export class LoginComponent implements OnInit {
 
         switch (this.loggedInUser.ulogaKorisnikaId) {
           case CONFIG.enums.ulogaKorisnikaEnum.superAdministrator:
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['super-admin/dashboard']);
             break;
           case CONFIG.enums.ulogaKorisnikaEnum.administratorUdruzenja:
-            this.router.navigate(['/udruzenje']);
+            this.router.navigate(['/admin/udruzenje/' + this.loggedInUser.udruzenjeId]);
             break;
           case CONFIG.enums.ulogaKorisnikaEnum.korisnik:
             this.router.navigate(['/home']);

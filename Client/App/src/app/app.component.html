@@ -1,48 +1,5 @@
 <div style="position:relative; min-height:100vh;min-width:100%">
-  <div class="flex flex-wrap">
-    <div class="w-full">
-      <nav class="relative flex flex-wrap items-center justify-between navbar-expand-lg bg-teal-500">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div class="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
-            <a class="text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap text-white" href="#">
-              FishermanZone
-            </a>
-            <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" (click)="toggleNavbar()">
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
-          <div [ngClass]="{'hidden': !menuShow, 'flex': menuShow}" class="lg:flex lg:flex-grow items-center">
-            <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li class="nav-item">
-                <a *ngIf="currentUser == null" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#">
-                  <i class="fas fa-globe text-lg leading-lg text-white opacity-75"></i>
-                </a>
-                <div *ngIf="currentUser != null" class="flex flex-wrap">
-                  <div class="w-full sm:w-6/12 md:w-4/12 px-4">
-                    <div class="relative inline-flex align-middle w-full">
-                      <button class="text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 ease-linear transition-all duration-150" type="button" (click)="toggleDropdown($event)" #btnDropdownRef>
-                        {{ currentUser.korisnckoIme }}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#">
-                  <i class="fas fa-user text-lg leading-lg text-white opacity-75"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#">
-                  <i class="fas fa-cog text-lg leading-lg text-white opacity-75"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
+  <app-navbar></app-navbar>
 
   <router-outlet></router-outlet>
 

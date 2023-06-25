@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="App\src\app\association\" />
+    <Folder Include="App\src\assets\fonts\" />
   </ItemGroup>
 
 </Project>

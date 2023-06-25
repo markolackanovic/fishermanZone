@@ -27,7 +27,7 @@
             <label class="block text-blueGray-600 text-xs font-bold mb-2">Lozinka*</label>
             <input type="password" required autocomplete="off" [(ngModel)]="loginModel.lozinka" name="lozinka" #lozinka="ngModel" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
             <div *ngIf="f.submitted && lozinka.invalid" class="error-input">Unesite lozinku</div>
-            <div *ngIf="usernameOrPasswordIncorrect" class="error-input">Korisničko ime i/ili lozinka nije ispravno</div>
+            <div *ngIf="usernameOrPasswordIncorrect" class="error-input">Neispravno korisničko ime i/ili lozinka</div>
           </div>
 
           <div class="w-full lg:w-6/12 px-2 mt-2">

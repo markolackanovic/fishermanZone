@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
-import { CONFIG } from '../../api/config';
-import { ToastService } from '../core/toast/toast.service';
-import { SharedService } from '../shared/shared.service';
-import { RegistrationService } from './registration.service';
+import { CONFIG } from '../../../../api/config';
+import { ToastService } from '../../../core/toast/toast.service';
+import { SharedService } from '../../../shared/shared.service';
+import { AssociationsService } from '../associations.service';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
+  selector: 'app-association-registration',
+  templateUrl: './association-registration.component.html',
   styleUrls: []
 })
-export class RegistrationComponent implements OnInit {
+export class AssociationRegistrationComponent implements OnInit {
 
   registrationModel: any = {
     nadredjenoUdruzenjeId: 0,
@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
 
   @ViewChild('f') ngForm: NgForm | undefined;
 
-  constructor(private registrationService: RegistrationService,
+  constructor(private associationRegistrationService: AssociationsService,
     private sharedService: SharedService, private toastService: ToastService) {
 
   }
@@ -57,11 +57,11 @@ export class RegistrationComponent implements OnInit {
     this.administrator.telefon = this.telefonAdministratora.e164Number;
 
     if (this.formValid()) {
-      this.registrationService.createUdruzenje(this.registrationModel).subscribe(result => {
+      this.associationRegistrationService.createUdruzenje(this.registrationModel).subscribe(result => {
         this.administrator.udruzenjeId = result;
         this.administrator.ulogaKorisnikaId = CONFIG.enums.ulogaKorisnikaEnum.administratorUdruzenja;
 
-        this.registrationService.createKorisnik(this.administrator).subscribe(result => {
+        this.associationRegistrationService.createKorisnik(this.administrator).subscribe(result => {
           this.toastService.activate("Profil udruženja uspješno kreiran", "toast-success");
         });
       });

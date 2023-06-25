@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-/*import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/common/http';*/
 import { UrlAccessRight } from './../models/admin/access-rights/url-access-right.model';
-import { LoginResponseModel } from '../../login/login-response.model';
 import { LoggedInUserModel } from './../models/admin/login/logged-in-user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -9,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SecurityService {
-  public _token: string | undefined;
+  public _token: string = '';
   public _isLoggedIn: boolean | undefined;
 
   public accessRigthId: number = 0;
@@ -23,7 +21,7 @@ export class SecurityService {
 
 
   public get token(): string {
-    let currentUser: LoginResponseModel = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    let currentUser: any = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this._token = currentUser.token || '{}';
 
     return this._token;
@@ -40,7 +38,7 @@ export class SecurityService {
     this._isLoggedIn = false;
 
     if (localStorage.getItem('currentUser')) {
-      let currentUser: LoginResponseModel = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      let currentUser: any = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
       if (currentUser.isLoggedIn)
         this._isLoggedIn = true;
