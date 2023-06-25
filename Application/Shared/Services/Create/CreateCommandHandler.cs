@@ -23,18 +23,13 @@ namespace Application.Shared.Services.Create
             var keyName = _context.Model.FindEntityType(typeof(TEntity)).FindPrimaryKey().Properties
                 .Select(x => x.Name)
                 .Single();
+
             _context.Set<TEntity>().Add(entity);
-            try
-            {
-                await _context.SaveChangesAsync(cancellationToken);
-                return (int)entity.GetType().GetProperty(keyName).GetValue(entity);
+            await _context.SaveChangesAsync(cancellationToken);
 
 
-            }
-            catch (Exception ex)
-            {
-                throw ex.InnerException;
-            }
+            return (int)entity.GetType().GetProperty(keyName).GetValue(entity);
+
         }
     }
 }

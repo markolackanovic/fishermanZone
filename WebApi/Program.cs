@@ -1,14 +1,7 @@
 using Application;
-using Microsoft.AspNetCore.Authentication.Certificate;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System.Text;
 using WebApi;
-using WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 

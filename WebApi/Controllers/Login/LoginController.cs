@@ -20,7 +20,10 @@ namespace WebApi.Controllers.Login
         [SwaggerOperation(Tags = new[] { "Login" })]
         public async Task<ActionResult<LoggedUserViewModel>> Login(GetKorisnikByUsernameAndPasswordQuery data)
         {
-            return Ok(await Mediator.Send(data));
+            var result = await Mediator.Send(data);
+            if (result.IsError)
+                return BadRequest(result.ErrorMessage);
+            return Ok(result.Result);
         }
     }
 }
