@@ -1,7 +1,9 @@
 ﻿using Application.Common.Infrastructure.Settings;
 using Application.Common.Interfaces;
+using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -51,6 +53,13 @@ namespace WebApi.Controllers
             retValue = tokenHandler.WriteToken(token);
 
             return retValue;
+        }
+
+        protected void WriteFileToDisk(string guidFileName, string fileBase64) {
+            //var path = Path.Combine(_appSettings.Value.ImagesFolder, guidFileName);
+            var path = Path.Combine("C:\\Users\\pero.novakovic\\test", guidFileName);
+
+            System.IO.File.WriteAllBytes(path, Convert.FromBase64String(fileBase64));
         }
     }
 }

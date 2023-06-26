@@ -18,5 +18,6 @@ namespace Application.BusinessLogic.Udruzenje.Commands.Create
         public string KontaktTelefon { get; set; }
         public string? KontaktEmail { get; set; }
         public string Opis { get; set; }
+        public int? LogoDatotekaID { get; set; }
     }
 }

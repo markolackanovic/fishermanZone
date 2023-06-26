@@ -7,7 +7,7 @@ import { FileUploadService } from './file-upload.service';
 })
 export class FileUploadComponent {
 
-  uploadedFile: File | undefined;
+  uploadedFile: File | null = null;
   uploadedFileUrl: string | null = null;
 
   constructor(private fileService: FileUploadService) { }
@@ -57,5 +57,11 @@ export class FileUploadComponent {
       this.uploadedFileUrl = event.target.result;
     };
     reader.readAsDataURL(file);
+  }
+
+  deleteLogo() {
+    this.uploadedFile = null;
+    this.uploadedFileUrl = null;
+    this.fileService.uploadedFile = null;
   }
 }

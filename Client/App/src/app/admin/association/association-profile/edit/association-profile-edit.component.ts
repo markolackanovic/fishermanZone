@@ -44,6 +44,8 @@ export class AssociationProfileEditComponent implements OnInit {
     this.associationService.getById(this.udruzenjeId).subscribe(result => {
       this.udruzenje = result;
 
+      console.log(this.udruzenje);
+
       this.kontaktTelefon = this.udruzenje.kontaktTelefon;
 
       this.initCodeLists();
@@ -99,5 +101,12 @@ export class AssociationProfileEditComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     });
+  }
+
+  deleteLogo() {
+    this.udruzenje.base64Logo = null;
+    this.udruzenje.base64LogoDatoteke = null;
+    this.udruzenje.ekstenzijaLogoDatoteke = null;
+    this.udruzenje.nazivLogoDatoteke = null;
   }
 }

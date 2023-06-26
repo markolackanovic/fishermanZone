@@ -367,6 +367,7 @@ namespace Persistence
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
                 entity.Property(e => e.NadredjenoUdruzenjeId).HasColumnName("NadredjenoUdruzenjeID");
+                entity.Property(e => e.LogoDatotekaId).HasColumnName("LogoDatotekaID");
 
                 entity.HasOne(d => d.LogoDatoteka).WithMany(p => p.Udruzenjes)
                    .HasForeignKey(d => d.LogoDatotekaId)

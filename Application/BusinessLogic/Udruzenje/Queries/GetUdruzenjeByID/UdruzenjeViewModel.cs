@@ -23,6 +23,11 @@ namespace Application.BusinessLogic.Udruzenje.Queries.GetUdruzenjeByID
         public string? Opis { get; set; }
         public string KontaktTelefon { get; set; } = string.Empty;
         public string KontaktEmail { get; set; } = string.Empty;
+        public int? LogoDatotekaId { get; set; }
+        public string? NazivLogoDatoteke { get; set; } = string.Empty;
+        public string GuidLogoDatoteke { get; set; } = string.Empty;
+        public string EkstenzijaLogoDatoteke { get; set; } = string.Empty;
+        public string Base64LogoDatoteke { get; set; } = string.Empty;
         public int UkupnoClanova { get; set; }
         public int UkupnoObjava { get; set; }
         public bool Aktivno { get; set; }
@@ -34,6 +39,9 @@ namespace Application.BusinessLogic.Udruzenje.Queries.GetUdruzenjeByID
                .ForMember(dest => dest.RibolovackiSavez, opt => opt.MapFrom(src => src.NadredjenoUdruzenje.Naziv))
                .ForMember(dest => dest.UkupnoObjava, opt => opt.MapFrom(src => src.ObjaveUdruzenjas.Count()))
                .ForMember(dest => dest.UkupnoClanova, opt => opt.MapFrom(src => src.Korisniks.Count()))
+               .ForMember(dest => dest.NazivLogoDatoteke, opt => opt.MapFrom(src => src.LogoDatoteka.Naziv))
+               .ForMember(dest => dest.GuidLogoDatoteke, opt => opt.MapFrom(src => src.LogoDatoteka.Guid))
+               .ForMember(dest => dest.EkstenzijaLogoDatoteke, opt => opt.MapFrom(src => src.LogoDatoteka.Ekstenzija))
             ;
         }
     }

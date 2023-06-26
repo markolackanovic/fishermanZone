@@ -103,7 +103,18 @@
               <div class="flex flex-wrap mb-3">
                 <div class="w-full lg:w-12/12 px-2">
                   <label class="block text-blueGray-600 text-xs font-bold mb-2">Logo udruženja</label>
-                  <app-file-upload class="w-full"></app-file-upload>
+                  <!--<div *ngIf="udruzenje.base64LogoDatoteke != null" class="flex items-center justify-center w-full mb-3">
+                    <img [src]="udruzenje.base64LogoDatoteke" class="shadow rounded max-w-full h-auto align-middle border-none" />
+                  </div>-->
+
+                  <div *ngIf="udruzenje.base64LogoDatoteke != null" class="flex items-center justify-center w-full mb-3">
+                    <div class="img-wrap">
+                      <span class="close" (click)="deleteLogo()">&times;</span>
+                      <img [src]="udruzenje.base64LogoDatoteke" class="shadow rounded max-w-full h-auto align-middle border-none">
+                    </div>
+                  </div>
+
+                  <app-file-upload *ngIf="udruzenje.base64LogoDatoteke == null" class="w-full"></app-file-upload>
                 </div>
               </div>
             </div>

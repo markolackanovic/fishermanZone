@@ -11,5 +11,6 @@ namespace Application.Common.Infrastructure.Settings
         public string AllowedHosts { get; set; } = string.Empty;
         public string TokenDurationDays { get; set; } = string.Empty;
         public string Secret { get; set; } = string.Empty;
+        public string ImagesFolder { get; set; } = string.Empty;
     }
 }

@@ -8,6 +8,8 @@ public partial class Datoteka
     public int DatotekaId { get; set; }
 
     public string Naziv { get; set; } = null!;
+    public string Guid { get; set; } = string.Empty;
+    public string Ekstenzija { get; set; } = string.Empty;
 
     public int TipDatotekeId { get; set; }
 

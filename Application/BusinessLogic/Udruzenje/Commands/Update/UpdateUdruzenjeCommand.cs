@@ -20,6 +20,7 @@ namespace Application.BusinessLogic.Udruzenje.Commands.Update
         public string Opis { get; set; }
         public string? Base64Logo { get; set; }
         public string? NazivLogoDatoteke { get; set; }
-        public int LogoDatotekaId { get; set; }
+        public string? GuidLogoDatoteke { get; set; }
+        public int? LogoDatotekaID { get; set; }
     }
 }

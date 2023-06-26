@@ -6,21 +6,14 @@ namespace Domain.Entities;
 public partial class Udruzenje
 {
     public int UdruzenjeId { get; set; }
-
     public int? NadredjenoUdruzenjeId { get; set; }
-
     public string Naziv { get; set; } = null!;
-
     public int AdministrativnaJedinicaId { get; set; }
-
     public string? Adresa { get; set; }
-
     public string? Opis { get; set; }
     public int? LogoDatotekaId { get; set; }
     public string KontaktTelefon { get; set; } = string.Empty;
     public string KontaktEmail { get; set; } = string.Empty;
-
-
     public bool Aktivno { get; set; }
 
     public virtual AdministrativnaJedinica AdministrativnaJedinica { get; set; } = null!;
