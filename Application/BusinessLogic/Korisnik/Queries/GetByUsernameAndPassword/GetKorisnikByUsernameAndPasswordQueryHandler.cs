@@ -2,6 +2,7 @@
 using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Security;
+using Application.Shared.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using FluentValidation.Results;
@@ -16,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword
 {
-    public class GetKorisnikByUsernameAndPasswordQueryHandler : IRequestHandler<GetKorisnikByUsernameAndPasswordQuery, LoggedUserViewModel>
+    public class GetKorisnikByUsernameAndPasswordQueryHandler : IRequestHandler<GetKorisnikByUsernameAndPasswordQuery, ServiceResult<LoggedUserViewModel>>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -29,7 +30,7 @@ namespace Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword
             _jwtProvider = jwtProvider;
         }
 
-        public async Task<LoggedUserViewModel> Handle(GetKorisnikByUsernameAndPasswordQuery request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<LoggedUserViewModel>> Handle(GetKorisnikByUsernameAndPasswordQuery request, CancellationToken cancellationToken)
         {
             var passHasher = new PasswordHasher(new OptionsWrapper<HashingOptions>(new HashingOptions()));
 
@@ -39,6 +40,14 @@ namespace Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword
                 .Where(u => u.KorisnickoIme == request.KorisnickoIme && u.Aktivno)
                 .ProjectTo<LoggedUserViewModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
+            if(!users.Any())
+            {
+                return new ServiceResult<LoggedUserViewModel>
+                {
+                    IsError = true,
+                    ErrorMessage = "Incorect username or password!"
+                };
+            }
 
             foreach (var user in users)
             {
@@ -48,11 +57,23 @@ namespace Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword
                     break;
                 }
             }
+            if(loggedInUser.KorisnikId == 0)
+            {
+                return new ServiceResult<LoggedUserViewModel>
+                {
+                    IsError = true,
+                    ErrorMessage = "Incorect username or password!"
+                };
+            }
 
             loggedInUser.Token = await _jwtProvider.GenerateTokenAsync(loggedInUser);
             loggedInUser.Lozinka = string.Empty;
 
-            return loggedInUser;
+            return new ServiceResult<LoggedUserViewModel>()
+            {
+                IsError = false,
+                Result = loggedInUser
+            };
         }
     }
 }

@@ -31,6 +31,7 @@ namespace Persistence
         }
 
 
+
         public virtual DbSet<AdministrativnaJedinica> AdministrativnaJedinicas { get; set; }
 
         public virtual DbSet<Datoteka> Datotekas { get; set; }
@@ -113,6 +114,8 @@ namespace Persistence
                 entity.HasIndex(e => e.TipDatotekeId, "IX_Datoteka_TipDatotekeID");
 
                 entity.Property(e => e.DatotekaId).HasColumnName("DatotekaID");
+                entity.Property(e => e.Ekstenzija).HasColumnType("character varying");
+                entity.Property(e => e.Guid).HasColumnType("character varying");
                 entity.Property(e => e.Naziv).HasMaxLength(100);
                 entity.Property(e => e.TipDatotekeId).HasColumnName("TipDatotekeID");
 
@@ -126,7 +129,7 @@ namespace Persistence
             {
                 entity.HasKey(e => e.DatotekeObjaveId);
 
-                entity.ToTable("DatotekaObjave");
+                entity.ToTable("DatotekaObjave", "Objave");
 
                 entity.HasIndex(e => e.DatotekaId, "IX_DatotekaObjave_DatotekaID");
 
@@ -173,7 +176,7 @@ namespace Persistence
 
             modelBuilder.Entity<Komentar>(entity =>
             {
-                entity.ToTable("Komentar");
+                entity.ToTable("Komentar", "Objave");
 
                 entity.HasIndex(e => e.KorisnikId, "IX_Komentar_KorisnikID");
 
@@ -239,7 +242,7 @@ namespace Persistence
 
             modelBuilder.Entity<ObjavaKorisnika>(entity =>
             {
-                entity.ToTable("ObjavaKorisnika");
+                entity.ToTable("ObjavaKorisnika", "Objave");
 
                 entity.HasIndex(e => e.KorisnikId, "IX_ObjavaKorisnika_KorisnikID");
 
@@ -295,7 +298,7 @@ namespace Persistence
             {
                 entity.HasKey(e => e.OvlascenjeId).HasName("Ovlascenje_pkey");
 
-                entity.ToTable("Ovlascenje");
+                entity.ToTable("Ovlascenje", "Admin");
 
                 entity.Property(e => e.OvlascenjeId).UseIdentityAlwaysColumn();
                 entity.Property(e => e.Naziv).HasColumnType("character varying");
@@ -305,7 +308,7 @@ namespace Persistence
             {
                 entity.HasKey(e => e.OvlascenjeUlogeId).HasName("OvlascenjeUloge_pkey");
 
-                entity.ToTable("OvlascenjeUloge");
+                entity.ToTable("OvlascenjeUloge", "Admin");
 
                 entity.Property(e => e.OvlascenjeUlogeId)
                     .UseIdentityAlwaysColumn()
@@ -326,7 +329,7 @@ namespace Persistence
 
             modelBuilder.Entity<TipAdministrativneJedinice>(entity =>
             {
-                entity.ToTable("TipAdministrativneJedinice");
+                entity.ToTable("TipAdministrativneJedinice", "Sifrarnici");
 
                 entity.Property(e => e.TipAdministrativneJediniceId).HasColumnName("TipAdministrativneJediniceID");
                 entity.Property(e => e.Naziv).HasMaxLength(500);
@@ -334,7 +337,7 @@ namespace Persistence
 
             modelBuilder.Entity<TipClana>(entity =>
             {
-                entity.ToTable("TipClana");
+                entity.ToTable("TipClana", "Sifrarnici");
 
                 entity.Property(e => e.TipClanaId).HasColumnName("TipClanaID");
                 entity.Property(e => e.Naziv).HasMaxLength(100);
@@ -345,12 +348,13 @@ namespace Persistence
                 entity.ToTable("TipDatoteke", "Sifrarnici");
 
                 entity.Property(e => e.TipDatotekeId).HasColumnName("TipDatotekeID");
+                entity.Property(e => e.Ekstenzija).HasColumnType("character varying");
                 entity.Property(e => e.Naziv).HasMaxLength(100);
             });
 
             modelBuilder.Entity<TipObjave>(entity =>
             {
-                entity.ToTable("TipObjave");
+                entity.ToTable("TipObjave", "Sifrarnici");
 
                 entity.Property(e => e.TipObjaveId).HasColumnName("TipObjaveID");
                 entity.Property(e => e.Naziv).HasMaxLength(500);
@@ -362,21 +366,23 @@ namespace Persistence
 
                 entity.HasIndex(e => e.AdministrativnaJedinicaId, "IX_Udruzenje_AdministrativnaJedinicaID");
 
-                entity.HasIndex(e => e.NadredjenoUdruzenjeId, "IX_Udruzenje_NadredjenoUdruzenjeID");
+                entity.HasIndex(e => e.NadredjenoUdruzenjeId, "IX_Udruzenje_NadredjenjoUdruzenjeID");
 
                 entity.Property(e => e.UdruzenjeId).HasColumnName("UdruzenjeID");
                 entity.Property(e => e.AdministrativnaJedinicaId).HasColumnName("AdministrativnaJedinicaID");
-                entity.Property(e => e.NadredjenoUdruzenjeId).HasColumnName("NadredjenoUdruzenjeID");
+                entity.Property(e => e.KontaktEmail).HasColumnType("character varying");
+                entity.Property(e => e.KontaktTelefon).HasColumnType("character varying");
                 entity.Property(e => e.LogoDatotekaId).HasColumnName("LogoDatotekaID");
-
-                entity.HasOne(d => d.LogoDatoteka).WithMany(p => p.Udruzenjes)
-                   .HasForeignKey(d => d.LogoDatotekaId)
-                   .HasConstraintName("FK_Udruzenje_DatotekaLogo");
+                entity.Property(e => e.NadredjenoUdruzenjeId).HasColumnName("NadredjenoUdruzenjeID");
 
                 entity.HasOne(d => d.AdministrativnaJedinica).WithMany(p => p.Udruzenjes)
                     .HasForeignKey(d => d.AdministrativnaJedinicaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Udruzenje_AdministrativnaJedinica");
+
+                entity.HasOne(d => d.LogoDatoteka).WithMany(p => p.Udruzenjes)
+                    .HasForeignKey(d => d.LogoDatotekaId)
+                    .HasConstraintName("FK_Udruzenje_DatotekaLogo");
 
                 entity.HasOne(d => d.NadredjenoUdruzenje).WithMany(p => p.InverseNadredjenoUdruzenje)
                     .HasForeignKey(d => d.NadredjenoUdruzenjeId)
@@ -385,7 +391,7 @@ namespace Persistence
 
             modelBuilder.Entity<UlogaKorisnika>(entity =>
             {
-                entity.ToTable("UlogaKorisnika");
+                entity.ToTable("UlogaKorisnika", "Admin");
 
                 entity.Property(e => e.UlogaKorisnikaId).HasColumnName("UlogaKorisnikaID");
                 entity.Property(e => e.Naziv).HasMaxLength(50);

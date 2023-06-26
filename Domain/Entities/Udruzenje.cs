@@ -11,10 +11,14 @@ public partial class Udruzenje
     public int AdministrativnaJedinicaId { get; set; }
     public string? Adresa { get; set; }
     public string? Opis { get; set; }
-    public int? LogoDatotekaId { get; set; }
-    public string KontaktTelefon { get; set; } = string.Empty;
-    public string KontaktEmail { get; set; } = string.Empty;
+
     public bool Aktivno { get; set; }
+
+    public string? KontaktTelefon { get; set; }
+
+    public string? KontaktEmail { get; set; }
+
+    public int? LogoDatotekaId { get; set; }
 
     public virtual AdministrativnaJedinica AdministrativnaJedinica { get; set; } = null!;
     public virtual Datoteka LogoDatoteka { get; set; } = null!;
@@ -24,6 +28,8 @@ public partial class Udruzenje
     public virtual ICollection<Udruzenje> InverseNadredjenoUdruzenje { get; set; } = new List<Udruzenje>();
 
     public virtual ICollection<Korisnik> Korisniks { get; set; } = new List<Korisnik>();
+
+    public virtual Datoteka? LogoDatoteka { get; set; }
 
     public virtual Udruzenje? NadredjenoUdruzenje { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Shared.Models;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.BusinessLogic.Korisnik.Queries.GetByUsernameAndPassword
 {
-    public class GetKorisnikByUsernameAndPasswordQuery : IRequest<LoggedUserViewModel>
+    public class GetKorisnikByUsernameAndPasswordQuery : IRequest<ServiceResult<LoggedUserViewModel>>
     {
         public string KorisnickoIme { get; set; }
         public string Lozinka { get; set; }
