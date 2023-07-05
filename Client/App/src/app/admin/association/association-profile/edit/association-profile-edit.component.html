@@ -17,9 +17,24 @@
       <form name="form" (ngSubmit)="f.valid && saveAndCloseModal()" #f="ngForm" novalidate>
         <div class="relative p-6" style="max-height: calc(100vh - 150px); overflow-y: auto;">
           <div class="flex content-center items-center justify-center h-full">
-            <div class="w-full m-4">
-              <div class="w-full lg:w-12/12 px-2">
-                <div class="relative w-full mb-3 mt-3">
+            <div class="w-full m-2">
+              <div class="flex flex-wrap mb-2 px-2">
+                <div class="w-full lg:w-12/12">
+                  <label class="block text-blueGray-600 text-xs font-bold mb-2">Logo udruženja</label>
+
+                  <div *ngIf="udruzenje.base64LogoDatoteke != null" class="flex items-center justify-center w-full">
+                    <div class="img-wrap">
+                      <span class="close" (click)="deleteLogo()">&times;</span>
+                      <img [src]="udruzenje.base64LogoDatoteke" class="shadow rounded max-w-full h-auto align-middle border-none">
+                    </div>
+                  </div>
+
+                  <app-file-upload [allowedFileTypes]="['jpg', 'jpeg', 'png']" *ngIf="udruzenje.base64LogoDatoteke == null" class="w-full"></app-file-upload>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap mb-2">
+                <div class="w-full lg:w-12/12 px-2">
                   <label class="block text-blueGray-600 text-xs font-bold mb-2">Ribolovački savez*</label>
                   <select required [disabled]="true" [(ngModel)]="udruzenje.nadredjenoUdruzenjeId" name="nadredjenoUdruzenjeId" #nadredjenoUdruzenjeId="ngModel" autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-lightGray rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                     <option *ngFor="let udr of udruzenja" [value]="udr.udruzenjeId">
@@ -29,9 +44,8 @@
                   <div *ngIf="f.submitted && udruzenje.nadredjenoUdruzenjeId < 1" class="error-input">Odaberite ribolovački savez kojem Vaše udruženje pripada</div>
                 </div>
               </div>
-
-              <div class="w-full lg:w-12/12 px-2">
-                <div class="relative w-full mb-3">
+              <div class="flex flex-wrap mb-2">
+                <div class="w-full lg:w-12/12 px-2">
                   <label class="block text-blueGray-600 text-xs font-bold mb-2">Naziv udruženja*</label>
                   <input type="text" [(ngModel)]="udruzenje.naziv" name="naziv" #naziv="ngModel" required autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-lightGray rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                   <div *ngIf="f.submitted && naziv.invalid" class="error-input">Unesite naziv Vašeg udruženja</div>
@@ -39,7 +53,7 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap mb-3">
+              <div class="flex flex-wrap mb-2">
                 <div class="w-full lg:w-6/12 px-2">
                   <label class="block text-blueGray-600 text-xs font-bold mb-2">Mjesto udruženja*</label>
                   <select autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-lightGray rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" required [(ngModel)]="udruzenje.administrativnaJedinicaId" name="administrativnaJedinicaId" #administrativnaJedinicaId="ngModel">
@@ -59,7 +73,7 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap mb-3">
+              <div class="flex flex-wrap mb-2">
                 <div class="w-full lg:w-6/12 px-2">
                   <label class="block text-blueGray-600 text-xs font-bold mb-2">Kontakt telefon udruženja*</label>
 
@@ -91,30 +105,49 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap mb-3">
-                <div class="w-full lg:w-12/12 px-2">
+              <div class="flex flex-wrap mb-2 px-2">
+                <div class="w-full lg:w-12/12">
                   <label class="block text-blueGray-600 text-xs font-bold mb-2">Kratak opis udruženja*</label>
-                  <textarea required autocomplete="off" [(ngModel)]="udruzenje.opis" name="opis" #opis="ngModel" rows="3" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-lightGray rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"></textarea>
+                  <textarea required autocomplete="off" [(ngModel)]="udruzenje.opis" name="opis" #opis="ngModel" rows="{{ udruzenje.opis == null || udruzenje.opis.length <= 300 ? 3 : udruzenje.opis.length / 110 + 1 }}" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-lightGray rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"></textarea>
                   <div *ngIf="f.submitted && opis.invalid" class="error-input">Unesite kratak opis udruženja</div>
                   <div *ngIf="f.submitted && opis.valid && udruzenje.opis?.length < 20" class="error-input">Opis mora sadržavati minimalno 20 karaktera</div>
                 </div>
               </div>
 
-              <div class="flex flex-wrap mb-3">
-                <div class="w-full lg:w-12/12 px-2">
-                  <label class="block text-blueGray-600 text-xs font-bold mb-2">Logo udruženja</label>
-                  <!--<div *ngIf="udruzenje.base64LogoDatoteke != null" class="flex items-center justify-center w-full mb-3">
-                    <img [src]="udruzenje.base64LogoDatoteke" class="shadow rounded max-w-full h-auto align-middle border-none" />
-                  </div>-->
 
-                  <div *ngIf="udruzenje.base64LogoDatoteke != null" class="flex items-center justify-center w-full mb-3">
-                    <div class="img-wrap">
-                      <span class="close" (click)="deleteLogo()">&times;</span>
-                      <img [src]="udruzenje.base64LogoDatoteke" class="shadow rounded max-w-full h-auto align-middle border-none">
+
+              <div class="flex flex-wrap px-2">
+                <div class="w-full lg:w-12/12">
+
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="block text-blueGray-600 text-xs font-bold mb-2">Dokumentacija udruženja</label>
+                    <button class="text-teal-500 bg-white font-bold uppercase text-xs px-2 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                            type="button" id="openDocumentDetailsModalBtn"
+                            (click)="openDocumentDetailsModal(0)"
+                            role="button">
+                      <i class="fas fa-plus"></i>
+                      Novi dokument
+                    </button>
+                  </div>
+
+                  <div *ngIf="udruzenje.dokumenti.length == 0" class="">
+                    <label class="block text-blueGray-600 text-sm mb-2">Nema dodatih dokumenata</label>
+                  </div>
+
+                  <div *ngFor="let dokument of udruzenje.dokumenti" class="flex w-full items-center justify-between">
+                    <span class="text-sm leading-normal text-blueGray-800">{{ dokument.naziv }}</span>
+
+                    <div class="flex flex-wrap mb-1">
+                      <button (click)="openDocumentDetailsModal(dokument.dokumentId)" class="text-teal-500 bg-white font-bold uppercase text-xs px-3 py-1 rounded hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+                        <i class="fas fa-pencil"></i>
+                      </button>
+
+                      <button (click)="deleteDocument(dokument.id)" class="text-teal-500 bg-white font-bold uppercase text-xs px-3 py-1 rounded hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+                        <i class="fas fa-trash-can"></i>
+                      </button>
                     </div>
                   </div>
 
-                  <app-file-upload *ngIf="udruzenje.base64LogoDatoteke == null" class="w-full"></app-file-upload>
                 </div>
               </div>
             </div>
@@ -133,3 +166,7 @@
     </div>
   </div>
 </div>
+
+<app-document-details *ngIf="showDocumentDetailsModal" [dokumentId]="dokumentId" (modalClosed)="documentDetailsModalClosed()"></app-document-details>
+
+

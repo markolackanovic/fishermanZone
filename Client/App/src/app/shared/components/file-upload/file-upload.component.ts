@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FileUploadService } from './file-upload.service';
 
 @Component({
@@ -7,8 +7,11 @@ import { FileUploadService } from './file-upload.service';
 })
 export class FileUploadComponent {
 
+  @Input()
+  allowedFileTypes: string[] = []; 
   uploadedFile: File | null = null;
   uploadedFileUrl: string | null = null;
+  fileTypeValid: boolean = true;
 
   constructor(private fileService: FileUploadService) { }
 
@@ -39,7 +42,15 @@ export class FileUploadComponent {
     const files = inputElement.files;
     if (files && files.length > 0) {
       const file = files[0];
-      this.handleImage(file);
+
+      let fileType: string = file.type.split('/')[1];
+
+      if (this.allowedFileTypes.filter(x => x == fileType).length == 0) {
+        this.fileTypeValid = false;
+      } else {
+        this.fileTypeValid = true;
+        this.handleImage(file);
+      }
     }
   }
 

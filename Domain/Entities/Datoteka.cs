@@ -8,8 +8,6 @@ public partial class Datoteka
     public int DatotekaId { get; set; }
 
     public string Naziv { get; set; } = null!;
-    public string Guid { get; set; } = string.Empty;
-    public string Ekstenzija { get; set; } = string.Empty;
 
     public int TipDatotekeId { get; set; }
 
@@ -25,6 +23,4 @@ public partial class Datoteka
     public virtual ICollection<Udruzenje> Udruzenjes { get; set; } = new List<Udruzenje>();
 
     public virtual TipDatoteke TipDatoteke { get; set; } = null!;
-
-    public virtual ICollection<Udruzenje> Udruzenjes { get; set; } = new List<Udruzenje>();
 }

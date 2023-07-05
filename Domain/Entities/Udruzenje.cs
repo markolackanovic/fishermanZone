@@ -18,7 +18,7 @@ public partial class Udruzenje
 
     public string? KontaktEmail { get; set; }
 
-    public int? LogoDatotekaId { get; set; }
+    public int? LogoDatotekaId { get; set; } = null!;
 
     public virtual AdministrativnaJedinica AdministrativnaJedinica { get; set; } = null!;
     public virtual Datoteka LogoDatoteka { get; set; } = null!;
@@ -28,8 +28,6 @@ public partial class Udruzenje
     public virtual ICollection<Udruzenje> InverseNadredjenoUdruzenje { get; set; } = new List<Udruzenje>();
 
     public virtual ICollection<Korisnik> Korisniks { get; set; } = new List<Korisnik>();
-
-    public virtual Datoteka? LogoDatoteka { get; set; }
 
     public virtual Udruzenje? NadredjenoUdruzenje { get; set; }
 

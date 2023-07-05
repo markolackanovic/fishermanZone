@@ -76,12 +76,26 @@
   </div>
 </div>
 
-<div class="flex content-center items-center justify-center h-full mt-2">
-  <button class="bg-teal-500 text-white font-bold uppercase text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 ease-linear transition-all duration-150"
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-12/12">
+    <h6 class="text-l font-normal leading-normal mt-0 text-blueGray-800">
+      Priloženi dokumenti
+    </h6>
+
+    <div class="flex flex-wrap w-full">
+      <div *ngFor="let dokument of udruzenje.dokumenti" class="w-full lg:w-6/12 mb-1">
+        <a (click)="downloadDocument(dokument)" class="text-l cursor-pointer font-bold hover-underline leading-normal mt-0 mb-2 text-blueGray-800">{{ dokument.naziv }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex content-center items-center justify-center h-full mt-10">
+  <button class="text-teal-500 bg-white font-bold uppercase text-xs px-3 py-2 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
           type="button" id="openAssociationEditModalBtn"
           (click)="openAssociationEditModal()"
           role="button">
-    Uredi profilne podatke
+    <i class="fas fa-pencil"></i> Uredi profilne podatke
   </button>
 </div>
 

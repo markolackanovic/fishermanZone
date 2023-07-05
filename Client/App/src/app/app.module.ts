@@ -22,6 +22,7 @@ import { AssociationMembersComponent } from './admin/association/association-mem
 import { AssociationPostsComponent } from './admin/association/association-posts/association-posts.component';
 import { AssociationProfileEditComponent } from './admin/association/association-profile/edit/association-profile-edit.component';
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
+import { DocumentDetailsComponent } from './shared/components/popups/document-details/document-details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FileUploadComponent } from './shared/components/file-upload/file-upload
     AssociationProfileEditComponent,
     AssociationMembersComponent,
     AssociationPostsComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    DocumentDetailsComponent
   ],
   imports: [
     CoreModule,

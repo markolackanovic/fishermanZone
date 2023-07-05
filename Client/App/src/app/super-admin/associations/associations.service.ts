@@ -15,9 +15,9 @@ export class AssociationsService {
     private _exceptionService: ExceptionService,
     private _spinnerService: SpinnerService) { }
 
-  createUdruzenje(udruzenje: any): Observable<number> {
+  saveUdruzenje(udruzenje: any): Observable<number> {
     this._spinnerService.show();
-    return this._http.post<number>(CONFIG.baseUrls.udruzenje.add, udruzenje)
+    return this._http.post<number>(CONFIG.baseUrls.udruzenje.save, udruzenje)
       .pipe(
         catchError(this._exceptionService.catchBadResponse),
         finalize(() => this._spinnerService.hide())

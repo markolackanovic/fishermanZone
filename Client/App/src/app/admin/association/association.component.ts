@@ -26,9 +26,8 @@ export class AssociationComponent implements OnInit {
   }
 
   getUdruzenjeById(udruzenjeId: number) {
-    this.associationService.getById(udruzenjeId).subscribe(result => {
-      console.log(result)
-      this.udruzenje = result;
+    this.associationService.getById(udruzenjeId).subscribe(x => {
+      this.udruzenje = x.result;
     });
   }
 

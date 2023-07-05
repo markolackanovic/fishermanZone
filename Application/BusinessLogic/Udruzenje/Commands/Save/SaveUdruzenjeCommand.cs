@@ -1,14 +1,15 @@
-﻿using Application.Common.Mappings;
-using Application.Shared.Services.Update;
+﻿using Application.BusinessLogic.Dokument.Commands.Save;
+using Application.Common.Mappings;
+using Application.Shared.Services.Save;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.BusinessLogic.Udruzenje.Commands.Update
+namespace Application.BusinessLogic.Udruzenje.Commands.Save
 {
-    public class UpdateUdruzenjeCommand : UpdateCommand, IMapFrom<Domain.Entities.Udruzenje>
+    public class SaveUdruzenjeCommand : SaveCommand, IMapFrom<Domain.Entities.Udruzenje>
     {
         public int UdruzenjeId { get; set; }
         public int NadredjenoUdruzenjeID { get; set; }
@@ -22,5 +23,7 @@ namespace Application.BusinessLogic.Udruzenje.Commands.Update
         public string? NazivLogoDatoteke { get; set; }
         public string? GuidLogoDatoteke { get; set; }
         public int? LogoDatotekaID { get; set; }
+        public List<SaveDokumentCommand> Dokumenti { get; set; } = new List<SaveDokumentCommand>();
+        public List<int> DokumentiZaBrisanje { get; set; } = new List<int>();
     }
 }

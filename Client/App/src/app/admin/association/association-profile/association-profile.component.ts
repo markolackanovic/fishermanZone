@@ -1,10 +1,20 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AssociationService } from '../association.service';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { DocumentService } from '../../../shared/components/popups/document-details/document.service';
 
 @Component({
   selector: 'app-association-profile',
   templateUrl: './association-profile.component.html',
-  styleUrls: []
+  styleUrls: [],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-10px)' }),
+        animate('500ms', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ]
 })
 export class AssociationProfileComponent implements OnInit {
 
@@ -15,7 +25,7 @@ export class AssociationProfileComponent implements OnInit {
 
   showModal: boolean = false;
 
-  constructor(private associationService: AssociationService) { }
+  constructor(private associationService: AssociationService, private documentService: DocumentService) { }
 
   ngOnInit() {
   }
@@ -30,7 +40,26 @@ export class AssociationProfileComponent implements OnInit {
     this.dataChanged.emit(true);
 
     this.associationService.getById(this.udruzenje.udruzenjeId).subscribe(result => {
-      this.udruzenje = result;
+      this.udruzenje = result.result;
+    });
+  }
+
+  downloadDocument(doc: any) {
+    console.log(doc);
+    this.documentService.download(doc.dokumentId).subscribe(result => {
+      const binaryString = window.atob(result);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+
+      const blob = new Blob([bytes], { type: 'application/octet-stream' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = doc.nazivDatoteke + '.' + doc.ekstenzijaDatoteke;
+      a.click();
+      window.URL.revokeObjectURL(url);
     });
   }
 }

@@ -17,12 +17,16 @@ export let CONFIG = {
   baseUrls: {
     login: BASECONFIG.apiUrl.url + 'Login/Login/',
     udruzenje: {
-      add: BASECONFIG.apiUrl.url + 'Udruzenje/Add/',
-      update: BASECONFIG.apiUrl.url + 'Udruzenje/Update/',
+      save: BASECONFIG.apiUrl.url + 'Udruzenje/Save/',
       getById: BASECONFIG.apiUrl.url + 'Udruzenje/GetById/'
     },
     korisnik: {
       add: BASECONFIG.apiUrl.url + 'Korisnik/Add/',
+    },
+    dokument: {
+      save: BASECONFIG.apiUrl.url + 'Dokument/Save/',
+      getById: BASECONFIG.apiUrl.url + 'Dokument/GetById/',
+      download: BASECONFIG.apiUrl.url + 'Dokument/Download/'
     },
     shared: {
       getAdministrativneJediniceForDropdown: BASECONFIG.apiUrl.url + 'AdministrativnaJedinica/ForDropdown/',

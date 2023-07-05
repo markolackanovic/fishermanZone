@@ -4,6 +4,7 @@ import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-
 import { CONFIG } from '../../../../../api/config';
 import { ToastService } from '../../../../core/toast/toast.service';
 import { FileUploadService } from '../../../../shared/components/file-upload/file-upload.service';
+import { DocumentService } from '../../../../shared/components/popups/document-details/document.service';
 import { SharedService } from '../../../../shared/shared.service';
 import { AssociationService } from '../../association.service';
 
@@ -17,7 +18,10 @@ export class AssociationProfileEditComponent implements OnInit {
   udruzenjeId: number = 0;
   @Output() modalClosed: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  udruzenje: any = {};
+  udruzenje: any = {
+    dokumenti: [],
+    dokumentiZaBrisanje: []
+  };
 
   udruzenja: any[] = [];
   admJedinice: any[] = [];
@@ -35,22 +39,28 @@ export class AssociationProfileEditComponent implements OnInit {
   uploadedFile: File | undefined;
   uploadedFileUrl: string | null = null;
 
+  showDocumentDetailsModal: boolean = false;
+  dokumentId: number = 0;
+
   constructor(private associationService: AssociationService,
     private sharedService: SharedService,
     private fileService: FileUploadService,
+    private documentService: DocumentService,
     private toastService: ToastService) { }
 
   ngOnInit() {
-    this.associationService.getById(this.udruzenjeId).subscribe(result => {
-      this.udruzenje = result;
-
-      console.log(this.udruzenje);
+    this.associationService.getById(this.udruzenjeId).subscribe(x => {
+      this.udruzenje = x.result;
+      if (this.udruzenje.dokumenti == undefined || this.udruzenje.dokumenti == null)
+        this.udruzenje.dokumenti = [];
+      this.udruzenje.dokumentiZaBrisanje = [];
 
       this.kontaktTelefon = this.udruzenje.kontaktTelefon;
 
       this.initCodeLists();
 
       this.subscribeToFileUpload();
+      this.subscribeToDocument();
     });
   }
 
@@ -68,7 +78,7 @@ export class AssociationProfileEditComponent implements OnInit {
     this.udruzenje.kontaktTelefon = this.kontaktTelefon.nationalNumber;
 
     if (this.formValid()) {
-      this.associationService.updateUdruzenje(this.udruzenje).subscribe(result => {
+      this.associationService.saveUdruzenje(this.udruzenje).subscribe(result => {
         this.modalClosed.emit(true);
         this.toastService.activate("Profilni podaci udruženja izmijenjeni", "toast-success");
       });   
@@ -108,5 +118,26 @@ export class AssociationProfileEditComponent implements OnInit {
     this.udruzenje.base64LogoDatoteke = null;
     this.udruzenje.ekstenzijaLogoDatoteke = null;
     this.udruzenje.nazivLogoDatoteke = null;
+  }
+
+  subscribeToDocument() {
+    this.documentService.document$.subscribe((document: any) => {
+      console.log(document);
+      this.udruzenje.dokumenti.push(document);
+    });
+  }
+
+  deleteDocument(documentId: number) {
+    this.udruzenje.dokumentiZaBrisanje.push(documentId);
+    this.udruzenje.dokumenti = this.udruzenje.dokumenti.filter((x: { id: number; }) => x.id != documentId);
+  }
+
+  openDocumentDetailsModal(dokumentId: number) {
+    this.dokumentId = dokumentId;
+    this.showDocumentDetailsModal = true;
+  }
+
+  documentDetailsModalClosed() {
+    this.showDocumentDetailsModal = false;
   }
 }

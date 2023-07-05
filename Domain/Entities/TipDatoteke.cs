@@ -12,7 +12,5 @@ public partial class TipDatoteke
 
     public bool Aktivno { get; set; }
 
-    public string? Ekstenzija { get; set; }
-
     public virtual ICollection<Datoteka> Datotekas { get; set; } = new List<Datoteka>();
 }

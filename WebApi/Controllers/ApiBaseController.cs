@@ -55,11 +55,36 @@ namespace WebApi.Controllers
             return retValue;
         }
 
-        protected void WriteFileToDisk(string guidFileName, string fileBase64) {
+        protected string GetFileAsBase64(string guidFileName, string fileExtension)
+        {
             //var path = Path.Combine(_appSettings.Value.ImagesFolder, guidFileName);
-            var path = Path.Combine("C:\\Users\\pero.novakovic\\test", guidFileName);
+            var documentPath = Path.Combine("C:\\Users\\pero.novakovic\\test", guidFileName + "." + fileExtension);
+            
+            byte[] bytes = System.IO.File.ReadAllBytes(documentPath);
+            return Convert.ToBase64String(bytes);
+        }
 
-            System.IO.File.WriteAllBytes(path, Convert.FromBase64String(fileBase64));
+        protected string GetImageAsBase64(string guidFileName, string fileExtension)
+        {
+            //var path = Path.Combine(_appSettings.Value.ImagesFolder, guidFileName);
+            var documentPath = Path.Combine("C:\\Users\\pero.novakovic\\test", guidFileName + "." + fileExtension);
+
+            byte[] bytes = System.IO.File.ReadAllBytes(documentPath);
+            return GetBase64TypeByFileExtension(fileExtension) + Convert.ToBase64String(bytes);
+        }
+
+        protected string GetBase64TypeByFileExtension(string fileExtension)
+        {
+            switch (fileExtension)
+            {
+                case "jpg":
+                    return "data:image/jpg;base64,";
+                case "png":
+                    return "data:image/png;base64,";
+                case "txt":
+                    return "data:text/plain;base64,";
+            }
+            return "";
         }
     }
 }

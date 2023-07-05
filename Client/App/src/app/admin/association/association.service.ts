@@ -24,9 +24,9 @@ export class AssociationService {
       );
   }
 
-  updateUdruzenje(udruzenje: any): Observable<number> {
+  saveUdruzenje(udruzenje: any): Observable<number> {
     this._spinnerService.show();
-    return this._http.put<number>(CONFIG.baseUrls.udruzenje.update, udruzenje)
+    return this._http.post<number>(CONFIG.baseUrls.udruzenje.save, udruzenje)
       .pipe(
         catchError(this._exceptionService.catchBadResponse),
         finalize(() => this._spinnerService.hide())

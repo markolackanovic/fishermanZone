@@ -1,0 +1,74 @@
+<div id="documentUploadModal" class="fixed w-full h-full z-50 top-0 bg-gray-transparent">
+  <div class="relative w-auto my-6 mx-auto max-w-30-p">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-center justify-between p-1 border-b border-solid border-blueGray-200 rounded-t">
+        <h3 class="text-xl ml-3 font-semibold">
+          Dokument
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="closeModal()">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <form name="form" (ngSubmit)="f.valid && saveAndCloseModal()" #f="ngForm" novalidate>
+        <div class="relative p-6" style="max-height: calc(100vh - 150px); overflow-y: auto;">
+          <div class="flex content-center items-center justify-center h-full">
+            <div class="w-full m-2">
+              <div class="flex flex-wrap mb-2">
+                <div class="w-full lg:w-12/12 px-2">
+                  <label class="block text-blueGray-600 text-xs font-bold mb-2">Naziv dokumenta*</label>
+                  <input type="text" [(ngModel)]="dokument.naziv" name="naziv" #naziv="ngModel" required autocomplete="off" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-lightGray rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                  <div *ngIf="f.submitted && naziv.invalid" class="error-input">Unesite naziv dokumenta</div>
+                  <div *ngIf="f.submitted && naziv.valid && dokument.naziv?.length < 3" class="error-input">Naziv dokumenta mora sadržavati minimalno 3 karaktera</div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap mb-2 px-2">
+                <div class="w-full lg:w-12/12">
+                  <label class="block text-blueGray-600 text-xs font-bold mb-2">Kratak opis dokumenta</label>
+                  <textarea autocomplete="off" [(ngModel)]="dokument.opis" name="opis" #opis="ngModel" rows="{{ dokument.opis == null || dokument.opis.length <= 300 ? 3 : dokument.opis.length / 110 + 1 }}" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-lightGray rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"></textarea>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap mb-2 px-2">
+                <div class="w-full lg:w-12/12">
+                  <label class="block text-blueGray-600 text-xs font-bold mb-2">Datoteka*</label>
+                  <div *ngIf="dokument.datotekaId > 0" class="flex w-full">
+                    <span class="text-sm leading-normal text-blueGray-800">{{ dokument.nazivDatoteke }}.{{ dokument.ekstenzijaDatoteke }}</span>
+                  </div>
+                  <div class="flex w-full rounded-lg">
+                    <label for="document" style="width:250px" class="text-sm px-2 py-2 text-gray-900 font-bold rounded-l cursor-pointer bg-gray-200 focus:outline-none">Odaberite datoteku</label>
+                    <input type="file" value=" " title=" " accept="application/msword, application/vnd.ms-excel, text/plain, application/pdf" id="document"
+                           (change)="handleUpload($event)" class="w-full px-2 py-2 rounded-r text-sm text-gray-900 cursor-pointer bg-lightGray focus:outline-none">
+                  </div>
+                  <div class="flex flex-wrap w-full">
+                    <div *ngIf="f.submitted && uploadedFile == null" class="w-full error-input">Odaberite datoteku</div>
+                    <div class="w-full text-xs text-gray-500 dark:text-gray-400" [ngClass]="fileTypeValid ? '' : 'error-input'">
+                      Dozvoljeni tipovi datoteke: {{ allowedFileTypesPretty }}.
+                    </div>
+                    <div *ngIf="!fileTypeValid" class="w-full text-xs text-gray-500 dark:text-gray-400 error-input">
+                      Odaberite drugu datoteku
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!--footer-->
+        <div class="flex items-center justify-end px-1 py-1 border-t border-solid border-blueGray-200 rounded-b">
+          <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="closeModal()">
+            Zatvori
+          </button>
+          <button class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">
+            Sačuvaj
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

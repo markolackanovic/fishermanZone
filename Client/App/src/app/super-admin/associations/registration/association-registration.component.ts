@@ -57,7 +57,7 @@ export class AssociationRegistrationComponent implements OnInit {
     this.administrator.telefon = this.telefonAdministratora.e164Number;
 
     if (this.formValid()) {
-      this.associationRegistrationService.createUdruzenje(this.registrationModel).subscribe(result => {
+      this.associationRegistrationService.saveUdruzenje(this.registrationModel).subscribe(result => {
         this.administrator.udruzenjeId = result;
         this.administrator.ulogaKorisnikaId = CONFIG.enums.ulogaKorisnikaEnum.administratorUdruzenja;
 
